@@ -57,7 +57,7 @@
    "id": "2019-s1-m3-q2a",
    "number": "2א",
    "type": "open",
-   "text": "מצאו מטריצה \\(A\\in M_{3\\times3}(\\mathbb{R})\\) המקיימת את שני התנאים הבאים:<ul><li>הוקטורים \\(\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix},\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\) שייכים למרחב הפתרונות של \\(A\\).</li><li>למערכת \\(Ax=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\) קיים פתרון.</li></ul>",
+   "text": "מצאו מטריצה \\(A\\in M_{3\\times3}(\\mathbb{R})\\) המקיימת את שני התנאים הבאים:<ul><li>הוקטורים \\(\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix},\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\) שייכים למרחב הפתרונות של \\(A\\).</li><li>לממ״ל \\(Ax=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\) קיים פתרון.</li></ul>",
    "topic": "מרחבים וקטוריים",
    "sub": "דרגה ומרחבי השורות, העמודות והאפס",
    "solution": {
