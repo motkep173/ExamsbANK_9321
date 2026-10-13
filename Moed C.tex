@@ -1,0 +1,1251 @@
+% !TeX spellcheck = he_IL
+%% ! TEX TS-program = xelatexmk
+% above: commands appropriate for TeXShop in mac OS
+\documentclass[12pt, a4paper]{article}
+\usepackage{etoolbox}
+\usepackage{bbm}
+%\usepackage{pifont}
+\usepackage{tikz}
+%\input{preamble/UnitPreamble}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%  Exam Template
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtoggle{testreview}
+\toggletrue{testreview}  
+\togglefalse{testreview} % uncomment to make it ready for exam unit
+\newtoggle{testsolution}
+\toggletrue{testsolution}  
+\togglefalse{testsolution} % comment to show solutions
+\newcounter{version}
+\setcounter{version}{2}  % version of multiple-choice
+
+	
+
+
+
+
+
+\usepackage{graphicx}
+
+\usepackage{braket}
+\usepackage[a4paper, top=3cm,left=2.5cm, right=2.3cm, bottom=2.7cm]{geometry}
+\usepackage{amsmath, amssymb, array, multicol, enumitem}
+\usepackage{pdfpages}
+\usepackage{comment, graphicx}  
+\usepackage{xparse}
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{pgffor}
+\usepackage[colorlinks=true]{hyperref} 
+\AtBeginDocument{%
+	\hypersetup{pdfborder={0 0 0},
+		urlcolor=blue}%
+}
+
+\usepackage{wasysym}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{polyglossia}
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+%\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX, Scale=1.1, WordSpace =1.05]{David}
+%\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX, Scale=1.1, WordSpace=1.05]{David  CLM}
+\newfontfamily\hebrewfont[Script=Hebrew]{Times New Roman}
+%\newfontfamily\hebrewfont[Script=Hebrew]{Ezra SIL}
+
+% Hebrew monospace font (must support Hebrew)
+\newfontfamily\hebrewfonttt[Script=Hebrew]{FreeMono}
+
+%http://tex.stackexchange.com/questions/141231/equation-number-enclosing-parentheses-misplaced-with-polyglossiahebrewamsmath
+\makeatletter
+%\def\maketag@@@#1{\hbox{\m@th\normalfont\LRE{#1}}}
+\def\tagform@#1{\maketag@@@{(\ignorespaces#1\unskip)}}
+\makeatother
+
+%
+% Hebrew fonts are two small 
+%
+\fontsize{14}{15}
+
+%
+% Package fro proper positioning of logo
+%
+\usepackage[absolute]{textpos}
+
+
+% http://tex.stackexchange.com/questions/10589/fix-nested-section-numbers-in-rtl-languages-with-polyglossia/
+\makeatletter
+\renewcommand{\SepMark}[1]{\def\@SepMark{#1}}
+\makeatother
+\SepMark{.}
+\robustify\hebrewnumeral
+\robustify\Hebrewnumeral
+\robustify\Hebrewnumeralfinal
+
+
+% from polyglossia docs
+%\gappto\captionshebrew{%
+\def\urladdrname{{\itshape כתובת רשת}}
+\def\emailaddrname{{\itshape כתובת דואל}}
+%}
+
+% https://tex.stackexchange.com/questions/176661/polyglossia-arabic-text-english-bibliography
+\makeatletter
+\let\orig@MakeUppercase \MakeUppercase
+\makeatother
+\providecommand{\MakeUppercase}[1]{#1}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%   User Commands
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\heb}[1]{\begin{small}\R{#1}\end{small}}
+\newcommand{\hebt}[1]{\begin{scriptsize}\R{#1}\end{scriptsize}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+%\renewcommand{\phi}{\varphi}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\lr}[1]{\left(#1\right)}
+
+
+\newcommand{\ff}{\mathbb{F}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\mtn}{m\times n}
+\newcommand{\longr}{\longrightarrow}
+\newcommand{\longrl}{\longleftrightarrow}
+\newcommand{\ol}{\overline}
+\newcommand{\ntn}{n\times n}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\im}{\mathrm{Im}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\qq}{\mathbb{Q}}
+\DeclareMathOperator{\vol}{vol}
+
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\deter}{det}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\tr}{tr}
+
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+
+
+%%%% new for complex functions
+
+\newcommand{\Arg}{\mathrm{Arg}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\goes}{\longrightarrow}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Log}{\mathrm{Log}}
+
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{   } #2 \\
+			#3 & \mbox{   } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\solutionword}{\textbf{פתרון:}}
+\newcommand{\points}[1]{(#1 נק') }
+\iftoggle{testsolution}{%
+	\newcommand{\sols}[1]{\solutionword$\;\;$ #1$\square$}
+	\newcommand{\spacing}{0cm}
+	\newcommand{\questionspacing}{2.5cm}
+	\newcommand{\extrapages}{}
+}{ %
+%\newcommand{\spacing}{12cm}
+%\newcommand{\halfspacing}{0.5cm}	
+\newcommand{\spacing}{24cm}
+\newcommand{\questionspacing}{\spacing}
+\newcommand{\sols}[1]{}
+\newcommand{\extrapages}{%
+	\newpage
+	\noindent
+	דף זה ריק במכוון ומיועד לשימוש הסטודנט/ית.
+	\newpage
+	\noindent
+	דף זה ריק במכוון ומיועד לשימוש הסטודנט/ית.
+}
+\iftoggle{testreview}{%
+\renewcommand{\spacing}{1cm}
+%\newcommand{\questionspacing}{\spacing}
+\renewcommand{\extrapages}{}	
+}{}	
+}
+
+
+\DeclareMathOperator{\row}{Row}
+
+\DeclareMathOperator{\col}{Col}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%   BEGIN DOCUMENT
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\selectlanguage{hebrew}
+
+
+\newcommand{\semester}{%
+	סמסטר א' תשפ״ו
+}
+\newcommand{\course}{%
+ אלגברה לינארית להנדסה 
+}
+\newcommand{\coursenumber}{9321}	
+\newcommand{\lecturers}{%
+	מרצים: ד״ר י.מייזל, ד״ר נ.גולקו, ד״ר נ.מאיר, ד״ר נ.איידלשטין, ד״ר מ.פורת, ד״ר מ.זיו-אב, ד״ר מ.ברשדסקי
+}
+
+\newcommand{\testdate}{{21.6.26}}
+\iftoggle{testsolution}{%
+	\newcommand{\testtype}{%
+		פתרונות למבחן מועד ג'
+	}
+}{%
+	\newcommand{\testtype}{%
+	\boxed{\text{
+	מועד ג'
+	}	}
+}}
+
+\newcommand{\duration}{%
+	3 שעות.
+}
+\newcommand{\helpmaterial}{%
+מחשבון פשוט בלבד.
+}
+
+
+
+\thispagestyle{empty}
+
+\begin{textblock*}{9cm}[0.5,0.5](90mm,3cm)
+	\includegraphics[width=5cm]{logo.jpg}
+\end{textblock*}	
+
+\noindent
+
+\begin{center}
+אוניברסיטת בן-גוריון בנגב - היחידה להוראת קורסי יסוד - %
+\smallskip
+\semester \\
+{\large \bf \course - 214.1.\coursenumber}\\
+\smallskip
+\lecturers\\
+\smallskip
+\smallskip
+\smallskip
+{\Large \testtype }\\
+\end{center}
+
+\noindent
+\textbf{%
+תאריך:
+} \testdate \quad 
+\textbf{משך הבחינה: 
+} \duration \quad
+\textbf{
+חומר עזר: 
+}
+\helpmaterial \\
+דף הנוסחאות מצורף למבחן. אין להכניס כל חומר עזר נוסף.
+\subsection*{חלק א': שאלות רב ברירה}
+\begin{itemize}
+    \item בחלק א' של המבחן יש 8 שאלות רב-ברירה, ומשקל כל שאלה 5 נקודות.
+    \item לכל שאלה יש תשובה אחת נכונה בדיוק. יש לסמן תשובה אחת לכל שאלה \textbf{בטבלה בדף זה}, אין צורך בנימוק.
+    \item שימו לב להנחיות מילוי הטבלה בעמוד הבא.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 \\
+\hline
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+\\
+\hline 
+\begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+& 
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+   \\
+ \hline
+\end{tabular}
+\end{center}
+
+
+\subsection*{חלק ב': שאלות פתוחות}
+\begin{itemize}
+    \item יש לבחור בדיוק 3 מתוך 4 שאלות פתוחות. משקל כל שאלה 20 נקודות.
+
+    \item יש לסמן את השאלות שנבחרו בטבלה בדף זה. שאלות שלא סומנו לא תבדקנה!
+    \item יש לנמק את התשובות בחלק ב' ולכתוב את כל החישובים הרלוונטים.
+    \item יש לענות על כל השאלות בחלק זה על טופס המבחן במקום המיועד אחרי כל שאלה.   
+    
+    \underline{
+    ניתן גם לכתוב מצדו השני של הדף. 
+    }
+    מחברת הטיוטה לא תבדק!
+\end{itemize}
+\bigskip
+
+ בחלק ב' יש לבדוק את השאלות הבאות. סמנו את התשובות המתאימות --  3 שאלות לכל היותר!
+
+
+\begin{center}
+\setlength{\arrayrulewidth}{0.6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textcircled{1} & \textcircled{2} & \textcircled{3} & \textcircled{4}\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\huge{\textbf{בהצלחה!}}
+\end{center}
+\pagebreak
+\subsection*{הוראות למילוי הטבלה}
+\begin{itemize}
+    \item[$\bullet$] יש להשתמש בעט שחור או כחול. 
+    \item[$\bullet$] יש לסמן תשובה אחת בלבד ע"י השחרת העיגול המתאים.
+    \item[$\bullet$]
+    בשאלה בה לא יושחר אף עיגול,
+    הניקוד יהיה 0.
+    \item[$\bullet$] בשאלה בה יושחרו יותר מעיגול אחד, הניקוד יהיה 0.
+.
+    \item[$\bullet$] כדי לתקן סימון, יש לסמן X
+    על התשובה הלא נכונה ולהשחיר את התשובה הנכונה.
+
+    \item[$\bullet$]
+    \textbf{שימו לב:}
+    לא ניתן לבחור סעיף שסומן עליו X
+    לכן הקפידו לסמן את תשובתכם כשאתם בטוחים בה.
+\end{itemize}
+
+\subsection*{דוגמאות}
+
+
+\begin{center}
+\begin{tabular}{|c||c||c||c||c||c||c||c||c||c|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+\begin{tabular}{c}
+\\\Large{\CIRCLE}\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+\  \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\
+\textcircled{א}
+\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}
+\\\\
+\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\ 
+
+\ 
+
+\begin{itemize}[label=$\bullet$]
+    \item שאלות 1,2,3 עם סימונים תקינים עבור תשובות:
+    \begin{enumerate}
+        \item א
+        \item ב
+        \item ג
+    \end{enumerate}
+    \item בשאלות 4,5,6 חסר סימון והניקוד יהיה 0.
+    \item בשאלות 7,8,9,10
+    יש יותר מסימון אחד והניקוד יהיה 0
+\end{itemize}
+
+
+\end{center}
+
+
+%%%
+%%%
+%%%   End of Header and Instructions
+%%%
+%%%
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% שאלה 2 %%%%%%%
+
+\section*{
+חלק א' 
+(40 נק')
+להשחיר את התשובות בטבלה!}
+\begin{enumerate}
+\item\points{5}
+ב-
+$\rr^3$
+נתון המישור
+$$H=\Set{(1,2,0)+t(1,-1,2)+s(2,1,-1) \mid t,s\in \rr}$$
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\item
+המישור
+$H$
+עובר בראשית הצירים.
+
+\item
+$H = \Set{(x,y,z)\in \rr^3\mid x-y-z=-1}$
+
+\item
+$H=\Set{(x,y,z)\in \rr^3\mid-x+5y+3z=9}$
+
+\item
+הנקודה
+$(3,1,1)$
+שייכת למישור
+$H$
+\end{enumerate}
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+
+\item\points{5}
+עבור
+$a\in\rr$
+נתונה המטריצה
+$A=
+\begin{pmatrix}
+a&1&1\\
+1&a&1\\
+1&1&a
+\end{pmatrix}$.
+
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\item
+עבור
+$a=1$
+מתקיים
+$\dim(N(A))=1$.
+
+\item
+עבור
+$a=-2$
+מתקיים
+$\rank(A)=2$.
+
+\item
+עבור
+$a=0$
+מתקיים
+$\det(A)=0$.
+
+\item
+עבור
+$a=2$
+מתקיים
+$\dim(\row(A))=\dim(N(A))$.
+\end{enumerate}
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item\points{5}
+תהי
+$T:\rr^2\to\rr^2$
+העתקה לינארית המקיימת
+$$T(1,1)=(3,1),\qquad T(1,-1)=(1,3)$$
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\item
+המטריצה המייצגת של
+$T$
+ביחס לבסיס הסטנדרטי 
+$\Set{\begin{pmatrix}
+    1 \\ 0
+\end{pmatrix},
+\begin{pmatrix}
+    0 \\ 1
+\end{pmatrix}
+}$
+היא
+$\begin{pmatrix}
+2&1\\
+2&-1
+\end{pmatrix}$
+
+\item
+המטריצה המייצגת של
+$T$
+ביחס לבסיס הסטנדרטי
+$\Set{\begin{pmatrix}
+    1 \\ 0
+\end{pmatrix},
+\begin{pmatrix}
+    0 \\ 1
+\end{pmatrix}
+}$
+היא
+$\begin{pmatrix}
+2&1\\
+1&-1
+\end{pmatrix}$
+
+\item
+מתקיים
+$T(2,0)=(2,2)$.
+
+\item
+ההעתקה
+$T$
+אינה הפיכה.
+\end{enumerate}
+%%%%% שאלה 2 %%%%%%%
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item\points{5}
+במרחב
+$\rr^3$
+נתונים הוקטורים
+$$u_1=(1,2,2),\qquad u_2=(2,1,-2),\qquad u_3=(2,-2,1)$$
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\item
+הקבוצה
+$\Set{u_1,u_2,u_3}$
+היא בסיס אורתונורמלי של
+$\rr^3$.
+
+\item
+הקבוצה
+$\Set{u_1,u_2,u_3}$
+היא בסיס אורתוגונלי של
+$\rr^3$,
+אך אינה בסיס אורתונורמלי.
+
+\item
+הקבוצה
+$\Set{u_1,u_2,u_3}$
+אינה בסיס של
+$\rr^3$.
+
+\item
+קיים
+$w\neq (0,0,0)$
+כך ש-
+$w\perp u_1,u_2,u_3$ (כלומר,
+$w$
+מאונך לוקטורים
+$u_1,u_2,u_3$)
+\end{enumerate}
+
+%\noindent\rule{\textwidth-30pt}{0.4pt}
+\pagebreak
+
+\item\points{5}
+במרחב
+$\rr^3$
+נתונים הבסיסים הסדורים
+$$B=\Set{\begin{pmatrix}
+    1 \\ 0 \\1
+\end{pmatrix},
+\begin{pmatrix}
+    0 \\ 1 \\1
+\end{pmatrix},
+\begin{pmatrix}
+    1 \\ 1\\0
+\end{pmatrix}},\quad  C=\Set{\begin{pmatrix}
+    1 \\ 1 \\1
+\end{pmatrix},
+\begin{pmatrix}
+    1 \\ 1 \\0
+\end{pmatrix},
+\begin{pmatrix}
+    1 \\ 0 \\0
+\end{pmatrix}}$$
+יהי
+$v\in\rr^3$
+וקטור המקיים
+$$[v]_B=
+\begin{pmatrix}
+1\\
+-1\\
+2
+\end{pmatrix}$$
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\begin{multicols}{2}
+\item
+$[v]_C=
+\begin{pmatrix}
+0\\
+1\\
+2
+\end{pmatrix}$
+
+\item
+$[v]_C=
+\begin{pmatrix}
+1\\
+-1\\
+2
+\end{pmatrix}$
+
+\item
+$[v]_C=
+\begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix}$
+
+\item
+$[v]_C=
+\begin{pmatrix}
+2\\
+-1\\
+1
+\end{pmatrix}$
+\end{multicols}
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+%\pagebreak
+
+%%%%
+\item\points{5}
+תהיינה
+$A,B\in M_{3\times 4}(\rr)$
+מטריצות שקולות שורה.
+בחרו את הטענה
+\underline{
+\textbf{שאינה בהכרח}}
+נכונה:
+\begin{enumerate}
+\item
+$N(A)=N(B)$
+
+\item
+$\rank(A)=\rank(B)$
+
+\item
+$\row(A)=\row(B)$
+
+\item
+$\col(A)=\col(B)$.
+
+\end{enumerate}
+
+
+\noindent\rule{16cm}{0.4pt}
+
+\item\points{5}
+תהי
+$A\in M_{3\times 3}(\rr)$
+מטריצה הפיכה המקיימת
+$\det(A)=-2, \quad \det(A-3I)=5$.
+
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\item
+מתקיים
+$\det(3A^{-1}-I)=\frac{5}{2}$.
+
+\item
+מתקיים
+$\det(3A^{-1}-I)=-\frac{5}{2}$.
+
+\item
+מתקיים
+$\det(3A^{-1}-I)=\frac{5}{54}$.
+
+\item
+לא ניתן לקבוע את
+$\det(3A^{-1}-I)$
+מתוך הנתונים.
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+
+\item\points{5}
+תהי
+$A\in M_{3\times 3}(\rr)$
+מטריצה שהפולינום האופייני שלה הוא
+$$p_A(x)=(x-1)^2(x+2)$$
+כמו כן נתון כי
+$\rank(A-I)=1$.
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\item
+המטריצה
+$A$
+לכסינה מעל
+$\rr$.
+
+\item
+המטריצה
+$A$
+אינה לכסינה מעל
+$\rr$.
+
+\item
+מתקיים
+$\dim(N(A+2I))=2$.
+
+\item
+מתקיים
+$\det(A)=2$.
+\end{enumerate}
+
+
+\pagebreak
+
+\end{enumerate}
+%%%
+%%%%%%
+%%%
+
+ \pagebreak
+
+\section*{חלק ב' (60 נק') - יש לבחור 3 מתוך 4 ולסמן בעמוד הראשון.}
+יש לענות במקומות המתאימים בעמודים הבאים.
+\begin{enumerate}
+\newcommand{\firstQ}{
+\item\points{20}
+יהי
+$a\in\rr$
+ותהי
+$$A=
+\begin{pmatrix}
+2&a&0\\
+0&2&0\\
+0&1&3
+\end{pmatrix}$$
+\begin{enumerate}
+\item\points{5}
+מצאו את הפולינום האופייני של
+$A$.
+
+\item\points{10}
+לכל ערך של
+$a\in\rr$
+קבעו האם
+$A$
+לכסינה מעל
+$\rr$.
+
+\item\points{5}
+עבור
+$a=0$
+מצאו מטריצה הפיכה
+$P$
+ומטריצה אלכסונית
+$D$
+כך ש-
+$A=PDP^{-1}$.
+\end{enumerate}
+}
+\firstQ
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\newcommand{\secondQ}{
+
+\item\points{20}
+נסמן
+$$B=\left\{
+\begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix},
+\begin{pmatrix}
+1\\
+0\\
+1
+\end{pmatrix},
+\begin{pmatrix}
+0\\
+1\\
+1
+\end{pmatrix}
+\right\}$$
+תהי
+$T:\rr^3\to\rr^3$
+העתקה לינארית המקיימת
+$$T\begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+3\\
+2\\
+2
+\end{pmatrix},
+\qquad
+T\begin{pmatrix}
+1\\
+0\\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+2\\
+1\\
+2
+\end{pmatrix},
+\qquad
+T\begin{pmatrix}
+0\\
+1\\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+3\\
+1\\
+4
+\end{pmatrix}$$
+
+\begin{enumerate}
+\item\points{8}
+מצאו נוסחה עבור
+$$T\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix}$$
+
+\item\points{8}
+מצאו בסיס אורתונורמלי עבור
+$\ker(T)$
+ובסיס אורתונורמלי עבור
+$\im(T)$.
+
+\item\points{4}
+האם קיימים
+$v_1,v_2\in\rr^3$
+כך ש-
+$v_1\neq v_2$
+וגם
+$T(v_1)=T(v_2)$?
+נמקו.
+\end{enumerate}
+
+}
+\secondQ
+
+%\noindent\rule{\textwidth-30pt}{0.4pt}
+\pagebreak
+
+\newcommand{\thirdQ}{
+
+\item\points{20}
+יהי
+$a\in\rr$
+ותהי
+$$A=
+\begin{pmatrix}
+1&2&1\\
+2&5&3\\
+1&3&a
+\end{pmatrix}.$$
+
+\begin{enumerate}
+\item\points{12}
+לכל ערך של
+$a\in\rr$
+מצאו בסיס עבור
+$\row(A)$,
+בסיס עבור
+$\col(A)$
+ובסיס עבור
+$N(A)$.
+
+\item\points{4}
+לכל ערך של
+$a\in\rr$
+מצאו בסיס עבור
+$\row(A)\cap N(A)$.
+
+\item\points{4}
+לכל ערך של
+$a\in\rr$
+מצאו בסיס עבור
+$\col(A)+N(A)$.
+\end{enumerate}
+
+}
+\thirdQ
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+\newcommand{\forthQ}{
+
+\item\points{20}
+ענו על שני הסעיפים הבאים.
+
+\begin{enumerate}
+\item\points{10}
+תהי
+$T:\rr^n\to\rr^n$
+העתקה לינארית המקיימת
+$T( T(v))={0}$
+לכל
+$v\in \rr^n$.
+
+הוכיחו כי
+$\im(T)\subseteq \ker(T)$
+והסיקו כי
+$\dim(\im(T))\leq \frac{n}{2}$
+
+\bigskip
+
+\item\points{10}
+תהי
+$T:V\to W$
+העתקה לינארית חד-חד ערכית,
+
+ויהיו
+$v_1,v_2,v_3\in V$
+וקטורים בלתי תלויים לינארית (בת"ל).
+
+הוכיחו כי
+$T(v_1),T(v_2),T(v_3)$
+בלתי תלויים לינארית (בת"ל).
+\end{enumerate}
+
+}\forthQ
+\pagebreak
+\setcounter{enumi}{0}
+    \firstQ
+\noindent\rule{\textwidth-30pt}{0.4pt}
+\underline{פיתרון:}
+    
+    \pagebreak \ 
+    \ 
+    
+    \pagebreak
+
+    
+    \secondQ
+    \noindent\rule{\textwidth-30pt}{0.4pt}
+    \underline{פיתרון:}
+
+
+    \pagebreak \ \pagebreak \ 
+
+    \ 
+    
+    \pagebreak
+
+    \thirdQ
+    \noindent\rule{\textwidth-30pt}{0.4pt}
+    \underline{פיתרון:}
+
+
+    \pagebreak \ \pagebreak
+
+    \forthQ
+    \noindent\rule{\textwidth-30pt}{0.4pt}
+    \underline{פיתרון:}
+
+
+    \pagebreak \ \pagebreak
+\end{enumerate}
+
+    \pagebreak 
+    
+    עמוד נוסף לכתיבת המשך פיתרונות
+    
+    \pagebreak
+    עמוד נוסף לכתיבת המשך פיתרונות
+
+ \pagebreak
+
+ % --- דף הנוסחאות ---
+
+\section*{דף הנוסחאות}
+
+\begin{enumerate}
+\item $M_{m\times n}(F)$ זו קבוצת המטריצות בגודל $m\times n$
+($m$ שורות, $n$ עמודות)
+עם רכיבים מ-$F$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item לכל מטריצה $A$, נסמן על ידי $(A)_{i,j}$ את האיבר של $A$ הנמצא בשורה ה-$i$ ובעמודה ה-$j$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item פיתוח דטרמיננטה של $A\in M_{n\times n}(F)$ לפי השורה ה-$i$ או לפי העמודה ה-$j$:
+\[
+\det(A)=\sum_{i=1}^{n}(-1)^{i+j}a_{ij}\det\!\big(M_{ij}(A)\big)
+=\sum_{j=1}^{n}(-1)^{i+j}a_{ij}\det\!\big(M_{ij}(A)\big)
+\]
+כאן $M_{ij}(A)$ זה המינור ה-$i,j$ של המטריצה $A$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item אם $T:V\to W$ העתקה לינארית, אם $B=\{v_1,\ldots,v_n\}$ בסיס סדור של $V$ ואם $C$ בסיס סדור של $W$,
+אז המטריצה המייצגת של $T$ ביחס לבסיסים $B$ ו-$C$ מוגדרת על ידי
+\[
+[T]^B_C=
+\begin{pmatrix}
+\vline & & \vline\\
+[T(v_1)]_C & \cdots & [T(v_n)]_C\\
+\vline & & \vline
+\end{pmatrix}.
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item לכל $u=(a_1,\ldots,a_n),\; w=(b_1,\ldots,b_n)\in\mathbb{R}^n$
+
+נסמן את המכפלה הפנימית הסטנדרטית ב-$\mathbb{R}^n$ (המכפלה הסקלרית):
+\[
+ u\cdot w=a_1\cdot b_1+\cdots+a_n\cdot b_n.
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+% --- דף הנוסחאות ---
+
+
+\item תהליך גראם-שמיט (גרסה א):
+אם $W$ תת-מרחב של $\rr^n$, ואם $\{v_1,\ldots,v_m\}$ בסיס של $W$
+
+אז $\{w_1,\ldots,w_m\}$ בסיס אורתוגונלי של $W$ כאשר
+\[
+w_1=v_1,\qquad
+w_k=v_k-\sum_{i=1}^{k-1}\frac{ v_k\cdot w_i}{ w_i\cdot w_i}\,w_i
+\quad (k=2,\ldots,m).
+\]
+\item תהליך גראם-שמיט (גרסה ב):
+בהנתן סדרה בת"ל
+$\{v_1,\ldots,v_k\}\subseteq \rr^n$, נבנה סדרה אורתונורמלית באופן הבא:
+\[
+w_1=\frac{v_1}{\|v_1\|},\qquad
+w_i'=v_i-\sum_{l=1}^{i-1} (v_i\cdot w_l)\,w_l,\qquad w_i = \frac{w_i'}{\|w_i'\|}
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item השורשים של המשוואה הריבועית
+$
+ax^2+bx+c=0\ (a\neq 0)
+$
+נתונים על ידי
+\[
+x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item מטריצה $A\in M_{n\times n}(\ff)$ דומה למטריצה $B\in M_{n\times n}(\ff)$ 
+
+אם
+קיימת 
+מטריצה הפיכה
+$P\in M_{n\times n}(\ff)$ כך ש-
+$A=PBP^{-1}$.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,1703 @@
+% !TeX spellcheck = he_IL
+%% ! TEX TS-program = xelatexmk
+% above: commands appropriate for TeXShop in mac OS
+\documentclass[12pt, a4paper]{article}
+\usepackage{etoolbox}
+\usepackage{bbm}
+%\usepackage{pifont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%  Exam Template
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtoggle{testreview}
+\toggletrue{testreview}  
+\togglefalse{testreview} % uncomment to make it ready for exam unit
+\newtoggle{testsolution}
+\toggletrue{testsolution}  
+\togglefalse{testsolution} % comment to show solutions
+\newcounter{version}
+\setcounter{version}{2}  % version of multiple-choice
+
+	
+
+
+
+
+
+
+
+\usepackage[a4paper, top=3cm,left=2.5cm, right=2.3cm, bottom=2.7cm]{geometry}
+\usepackage{amsmath, amssymb, array, multicol, enumitem}
+\usepackage{pdfpages}
+\usepackage{comment, graphicx}  
+\usepackage{xparse}
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{pgffor}
+\usepackage[colorlinks=true]{hyperref} 
+\AtBeginDocument{%
+	\hypersetup{pdfborder={0 0 0},
+		urlcolor=blue}%
+}
+
+\usepackage{wasysym}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{polyglossia}
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+%\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX, Scale=1.1, WordSpace =1.05]{David}
+%\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX, Scale=1.1, WordSpace=1.05]{David  CLM}
+\newfontfamily\hebrewfont[Script=Hebrew]{Times New Roman}
+
+%http://tex.stackexchange.com/questions/141231/equation-number-enclosing-parentheses-misplaced-with-polyglossiahebrewamsmath
+\makeatletter
+%\def\maketag@@@#1{\hbox{\m@th\normalfont\LRE{#1}}}
+\def\tagform@#1{\maketag@@@{(\ignorespaces#1\unskip)}}
+\makeatother
+
+%
+% Hebrew fonts are two small 
+%
+\fontsize{14}{15}
+
+%
+% Package fro proper positioning of logo
+%
+\usepackage[absolute]{textpos}
+
+
+% http://tex.stackexchange.com/questions/10589/fix-nested-section-numbers-in-rtl-languages-with-polyglossia/
+\makeatletter
+\renewcommand{\SepMark}[1]{\def\@SepMark{#1}}
+\makeatother
+\SepMark{.}
+\robustify\hebrewnumeral
+\robustify\Hebrewnumeral
+\robustify\Hebrewnumeralfinal
+
+
+% from polyglossia docs
+%\gappto\captionshebrew{%
+\def\urladdrname{{\itshape כתובת רשת}}
+\def\emailaddrname{{\itshape כתובת דואל}}
+%}
+
+% https://tex.stackexchange.com/questions/176661/polyglossia-arabic-text-english-bibliography
+\makeatletter
+\let\orig@MakeUppercase \MakeUppercase
+\makeatother
+\providecommand{\MakeUppercase}[1]{#1}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%   User Commands
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\heb}[1]{\begin{small}\R{#1}\end{small}}
+\newcommand{\hebt}[1]{\begin{scriptsize}\R{#1}\end{scriptsize}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+%\renewcommand{\phi}{\varphi}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\lr}[1]{\left(#1\right)}
+
+
+\newcommand{\ff}{\mathbb{F}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\mtn}{m\times n}
+\newcommand{\longr}{\longrightarrow}
+\newcommand{\longrl}{\longleftrightarrow}
+\newcommand{\ol}{\overline}
+\newcommand{\ntn}{n\times n}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\im}{\mathrm{Im}}
+
+
+
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{   } #2 \\
+			#3 & \mbox{   } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\solutionword}{\textbf{פתרון:}}
+\newcommand{\points}[1]{(#1 נק') }
+\iftoggle{testsolution}{%
+	\newcommand{\sols}[1]{\solutionword$\;\;$ #1$\square$}
+	\newcommand{\spacing}{0cm}
+	\newcommand{\questionspacing}{2.5cm}
+	\newcommand{\extrapages}{}
+}{ %
+%\newcommand{\spacing}{12cm}
+%\newcommand{\halfspacing}{0.5cm}	
+\newcommand{\spacing}{24cm}
+\newcommand{\questionspacing}{\spacing}
+\newcommand{\sols}[1]{}
+\newcommand{\extrapages}{%
+	\newpage
+	\noindent
+	דף זה ריק במכוון ומיועד לשימוש הסטודנט/ית.
+	\newpage
+	\noindent
+	דף זה ריק במכוון ומיועד לשימוש הסטודנט/ית.
+}
+\iftoggle{testreview}{%
+\renewcommand{\spacing}{1cm}
+%\newcommand{\questionspacing}{\spacing}
+\renewcommand{\extrapages}{}	
+}{}	
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%   BEGIN DOCUMENT
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+
+\begin{document}
+
+\selectlanguage{hebrew}
+
+
+\newcommand{\semester}{%
+	סמסטר א' תשפ״ו
+}
+\newcommand{\course}{%
+ אלגברה לינארית להנדסה 
+}
+\newcommand{\coursenumber}{9321}	
+\newcommand{\lecturers}{%
+	מרצים: ד״ר י.מייזל, ד״ר נ.גולקו, ד״ר נ.מאיר, ד״ר נ.איידלשטין, ד״ר מ.פורת, ד״ר מ.זיו-אב, ד״ר מ.ברשדסקי
+}
+
+\newcommand{\testdate}{{12.12.25}}
+\iftoggle{testsolution}{%
+	\newcommand{\testtype}{%
+		פתרונות למבחן מועד א'
+	}
+}{%
+	\newcommand{\testtype}{%
+	\boxed{\text{
+	בוחן לדוגמה
+	}	}
+}}
+
+\newcommand{\duration}{%
+	2 שעות.
+}
+\newcommand{\helpmaterial}{%
+מחשבון פשוט בלבד.
+}
+
+
+
+\thispagestyle{empty}
+
+\begin{textblock*}{9cm}[0.5,0.5](90mm,3cm)
+	\includegraphics[width=2in]{logo}
+\end{textblock*}	
+
+\noindent
+
+\begin{center}
+אוניברסיטת בן-גוריון בנגב - היחידה להוראת קורסי יסוד - %
+\smallskip
+\semester \\
+{\large \bf \course - 214.1.\coursenumber}\\
+\smallskip
+\lecturers\\
+\smallskip
+\smallskip
+\smallskip
+{\Large \testtype }\\
+\end{center}
+
+\noindent
+\textbf{%
+תאריך:
+} \testdate\\
+\textbf{משך הבחינה: 
+} \duration \\
+\textbf{
+חומר עזר: 
+}
+\helpmaterial
+
+
+
+\noindent
+
+\begin{itemize}
+\item
+\textbf{
+בבוחן 10 שאלות רב-ברירה. יש לענות על כולן. כל שאלה במשקל של 10 נקודות.}
+\item
+לכל שאלה יש רק תשובה אחת נכונה בדיוק. 
+\item
+יש להשחיר תשובה נכונה אחת בלבד לכל שאלה בטבלה. 
+\item
+בכל שאלה בה תסומן יותר מתשובה אחת או שלא תסומן אף תשובה, הניקוד עבור השאלה יהיה
+$0$.
+\iffalse
+\item התשובות שלי הן:  
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+1 & 2 &  3 & 4 & 5 \\
+\hline
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+\\
+\hline
+\end{tabular}
+
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ 6 & 7& 8& 9& 10  \\
+\hline
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א & ב & ג &ד
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\item התשובות שלי הן:  
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+א\\
+ב\\
+ג\\
+ד\\
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\fi
+
+
+\item
+\textbf{%
+שימו לב:
+ דפי הטיוטה נשלחים לגריסה באופן מיידי. 
+}  
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+
+\item
+$M_{m\times n}(\FF)$
+זו קבוצת המטריצות בגודל
+$m\times n$
+(
+$m$
+שורות,
+$n$
+עמודות
+)
+עם רכיבים מ-$\ff$.
+%%%%%
+
+
+
+\item
+לכל מטריצה
+$A$,
+נסמן
+על ידי
+$(A)_{i,j}$
+את האיבר של 
+$A$
+הנמצא בשורה ה-$i$
+ובעמודה ה-$j$.
+%%%%%
+
+
+
+\item
+ פיתוח דטרמיננטה של $A\in M_{n\times n}(\FF)$ לפי השורה ה-$i$ 
+או לפי העמודה ה-$j$:
+$$\det(A)=\sum_{i=1}^n (-1)^{i+j}a_{ij}\det(M_{ij}(A))=\sum_{j=1}^n (-1)^{i+j}a_{ij}\det(M_{ij}(A))$$
+כאן $M_{ij}(A)$ הוא המינור ה-$i,j$ של המטריצה $A$. 
+
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\begin{center}
+{\Large
+	בהצלחה!
+}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c||c||c||c||c||c||c||c||c||c|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\Large{\CIRCLE}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\ 
+
+\ 
+
+\huge{
+הוראות למילוי הטבלה בעמוד הבא
+}
+\end{center}
+\pagebreak
+
+\section*{הוראות למילוי הטבלה}
+\begin{itemize}
+    \item[$\bullet$] יש להשתמש בעט שחור או כחול. 
+    \item[$\bullet$] יש לסמן תשובה אחת בלבד ע"י השחרת העיגול המתאים.
+    \item[$\bullet$]
+    בשאלה בה לא יושחר אף עיגול,
+    הניקוד יהיה 0.
+    \item[$\bullet$] בשאלה בה יושחרו יותר מעיגול אחד, הניקוד יהיה 0.
+.
+    \item[$\bullet$] כדי לתקן סימון, יש לסמן X
+    על התשובה הלא נכונה ולהשחיר את התשובה הנכונה.
+
+    \item[$\bullet$]
+    \textbf{שימו לב:}
+    לא ניתן לבחור סעיף שסומן עליו X
+    לכן הקפידו לסמן את תשובתכם כשאתם בטוחים בה.
+\end{itemize}
+
+\section*{דוגמאות}
+
+
+\begin{center}
+\begin{tabular}{|c||c||c||c||c||c||c||c||c||c|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+\begin{tabular}{c}
+\\\Large{\CIRCLE}\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+\  \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\
+\textcircled{א}
+\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}
+\\\\
+\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\ 
+
+\ 
+
+\begin{itemize}[label=$\bullet$]
+    \item שאלות 1,2,3 עם סימונים תקינים עבור תשובות:
+    \begin{enumerate}
+        \item א
+        \item ב
+        \item ג
+    \end{enumerate}
+    \item בשאלות 4,5,6 חסר סימון והניקוד יהיה 0.
+    \item בשאלות 7,8,9,10
+    יש יותר מסימון אחד והניקוד יהיה 0
+\end{itemize}
+
+
+\end{center}
+\iffalse
+\item
+\textbf{\underline{תזכורת:}}
+$$,I_p=
+\left\{
+f:\rr\to\cc
+\mid
+\text{$f$ מחזורית-$2\pi$ ואינטגרבילית}
+\right\}$$
+$$,PC_p=
+\left\{
+f:\rr\to\cc
+\mid
+\text{$f$ מחזורית-$2\pi$ ורציפה למקוטעין}
+\right\}$$
+$$.C_p=
+\left\{
+f:\rr\to\cc
+\mid
+\text{$f$ מחזורית-$2\pi$ ורציפה}
+\right\}$$
+
+\item
+\textbf{\underline{תזכורת:}}
+סדרת פונקציות ממשיות
+$(F_n)_{n=1}^{\infty}$
+ב-$PC_p$
+נקראת גרעין טוב (סומוביליות חיובי) אם 
+\begin{itemize}
+\item
+לכל
+$n\ge1$
+מתקיים
+$F_n(x)\ge0$
+לכל
+$x\in[-\pi,\pi]$.
+\item
+לכל
+$n\ge1$
+מתקיים
+$\frac{1}{2\pi}
+\int_{-\pi}^{\pi}
+F_n(x)dx=1$.
+\item
+לכל
+$0<\delta<\pi$
+מתקיים
+$\underset{n\to\infty}{\lim}
+\frac{1}{2\pi}
+\int_{-\delta}^{\delta}
+F_n(x)dx=1$.
+\end{itemize}
+
+\item
+\textbf{\underline{תזכורת:}}
+לכל
+$N\ge0$ 
+ולכל
+$f\in I_p$:
+$$.\left(S_N(f)\right)(x)
+=\sum_{n=-N}^N \widehat{f}(n)e^{inx}
+\quad,\quad
+\left(\sigma_N(f)\right)(x)=
+\sum_{n=-N}^N
+\left(
+1-\frac{|n|}{N+1}\right)\widehat{f}(n)e^{inx}$$
+
+\item
+\textbf{\underline{תזכורת:}}
+עבור קטע
+$[c,d]\subset\rr$,
+נסמן את הפונקציה המציינת שלו על ידי
+$$.\mathbbm{1}_{[c,d]}(x)=
+\begin{cases}
+1&: x\in[c,d]\\
+0&: \text{אחרת}
+\end{cases}$$
+\noindent\rule{16cm}{0.4pt}
+
+\fi
+\end{itemize}
+
+%%%
+%%%
+%%%   End of Header and Instructions
+%%%
+%%%
+
+\newpage
+
+\underline{{\Large
+}}
+
+
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% שאלה 2 %%%%%%%
+
+
+\item\points{10}
+נתון ישר ב-$\rr^2$
+שעובר דרך הנקודות
+$(1,2)$
+ו-
+$(3,5)$.
+מי מהבאות היא הצגה פרמטרית של הישר?
+\begin{enumerate}
+\item
+$L=\{ (-1,-2)+t\cdot (-4,-6)\bigm|
+t\in\rr\}$.
+\item
+$L=\{ (-3,-4)+t\cdot (4,-6)\bigm|
+t\in\rr\}$.
+\item
+$L=\{ (-3,-4)+t\cdot (4,6)\bigm|
+t\in\rr\}$.
+\item
+$L=\{ (-1,-2)+t\cdot (-4,6)\bigm|
+t\in\rr\}$.
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+נסמן את הנקודות
+$A(1,2)$
+ו-
+$B(3,5)$.
+הישר שעובר בשתיהן הוא בעל וקטור כיוון
+$\vec{v}=\vec{AB}=(2,3)$.
+בסעיפים (ב),(ד) וקטורי הכיוון של הישר הם
+$(4,-6)$
+ו-$(-4,6)$
+שאינם קולינאריים ל-$\vec{v}$
+ולכן לא מהווים וקטור כיוון של הישר, אז סעיפים (ב),(ד) נפסלים.
+
+וקטורי הכיוון בסעיפים (א),(ג) הם קולינאריים ל-$\vec{v}$
+ולכן הם לא נפסלים. 
+השאלה היא מי מבין שתי הנקודות
+$(-1,-2)$
+או
+$(-3,-4)$
+נמצאת על הישר.
+
+בעזרת וקטור הכיוון שמצאנו, הצגה פרמטרית של הישר תהיה
+$$L=\{(1+2t,2+3t) : t\in\rr
+\}$$
+נבדוק האם
+$(-1,-2)=(1+2t,2+3t)$,
+ונקבל
+$2t=-2, 3t=-4$
+וזו סתירה, לכן
+$(-1,-2)\not\in L$.
+
+לעמת זאת, נבדוק האם
+$(-3,-4)=(1+2t,2+3t)$,
+אז
+$2t=-4,3t=-6$,
+כלומר
+$t=2$,
+אז
+$(-3,-4)\in L$,
+ולסיכום התשובה הנכונה היא (ג).
+
+\newpage
+
+\item\points{10}
+נתון מישור
+$H$
+במרחב
+$\rr^3$
+העובר דרך הנקודה
+$(2,-1,1)$,
+שמקביל למישור הנתון על ידי המשוואה
+$x+2y+z=3$.
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\begin{multicols}{2}
+\item
+$(0,0,0)\in H$
+\item
+$(3,-2,2)\in H$
+\item
+$(5,0,-6)\in H$
+\item
+$(0,1,0)\in H$
+\end{multicols}
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+בגלל ש-$H$
+מקביל למישור הנתון על ידי המשוואה
+$x+2y+z=3$,
+משוואתו תהיה נתונה על ידי
+$x+2y+z=d$
+עבור
+$d\in\rr$
+כלשהו (למה? אם הם מקבילים אז יש להם אותו נורמל, שהוא
+$(1,2,1)$).
+
+עוד נתון כי
+$H$
+עובר בנקודה
+$(2,-1,1)$
+ולכן בהכרח יתקיים
+$2+2(-1)+1=d$,
+אז
+$d=1$.
+לסיכום, משוואת המישור
+$H$
+היא
+$$x+2y+z=1$$
+נציב את הנקודות הנתונות ונגלה כי רק
+$(3,-2,2)\in H$,
+אז התשובה הנכונה היא
+(ב).
+
+
+
+\newpage
+
+%%%%% שאלה 2 %%%%%%%
+
+\item\points{10}
+תהי
+$A\in M_{m\times n}(\rr)$
+ויהי
+$b\in \rr^m$.
+אילו מהטענות הבאות בהכרח נכונה?
+\begin{enumerate}
+\item
+אם
+$m>n$
+אז לממ״ל
+$AX=b$
+אין פתרון.
+%%%
+\item
+אם
+$n>m$
+אז לממ״ל
+$AX=0$
+יש פתרון לא טריוויאלי.
+%%%
+\item
+אם קיים פתרון לממ״ל
+$AX=b$
+אז לכל
+$c\in \rr^m$
+קיים פתרון לממ״ל
+$AX=c$.
+%%%
+\item
+אם
+$u,v$
+הם פתרונות של הממ״ל
+$AX=b$
+אז גם הוקטור
+$2u+v$
+הוא פתרון של אותה הממ״ל.
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+\begin{itemize}
+\item
+בסעיף (א) נתון כי יש לממ״ל יותר משוואות מנעלמים, זו לא סיבה מספיקה שלממ״ל לא יהיה פתרון. למשל, נקח
+$$A=
+\begin{pmatrix}
+1&0\\
+0&1\\
+0&0\\
+\end{pmatrix},
+b=\begin{pmatrix}
+2\\3\\0\\
+\end{pmatrix}$$
+כאן
+$m=3>2=n$
+אבל
+לממ״ל
+$AX=b$
+יש פתרון יחיד.
+\item
+בסעיף (ב) נתון כי הממ״ל היא הומוגנית, מה שאומר שיש לה פתרון (לפחות אחד) 
+ועוד נתון כי יש יותר נעלמים ממשואות ולכן
+$\mathrm{rank}(A)\le m<n$
+מה שאומר שלא יהיה פתרון יחיד כי יהיה לפחות משתנה חפשי אחד לאחר דירוג, אז לממ״ל יש פתרון לא טריוויאלי (ואפילו אינסוף פתרונות),
+אז סעיף (ב) נכון.
+\item
+סעיף (ג) לא נכון, למשל נקח
+את הממ״ל
+$$\begin{cases}
+x_1+x_2=1\\
+2x_1+2x_2=2\\
+\end{cases}$$
+שלה  יש פתרון (אפילו אינסוף) אבל לממ״ל
+$$\begin{cases}
+x_1+x_2=1\\
+2x_1+2x_2=4\\
+\end{cases}$$
+ אין פתרון. ובמילים אחרות, נקח
+$$A=\begin{pmatrix}
+1&1\\
+2&2\\
+\end{pmatrix},
+b=\begin{pmatrix}
+1\\2\\
+\end{pmatrix},
+c=\begin{pmatrix}
+1\\4\\
+\end{pmatrix}$$
+\item
+מהנתון נסיק כי מתקיים
+$A\cdot u=b$
+וגם כי
+$A\cdot v=b$,
+לכן בהכרח
+$$A\cdot(2u+v)=2A\cdot u+A\cdot v=2b+b=3b$$
+כלומר
+הוקטור
+$2u+v$
+הוא פתרון של הממ״ל
+$AX=3b$.
+זה אומר שאם
+$b\neq0$,
+כלומר הממ״ל הנתונה אינה הומוגנית אז
+$2u+v$
+אינו פתרון של
+$AX=b$,
+כי
+$b\neq 3b$.
+כל דוגמה של ממ״ל שאינה הומוגנית תעבוד, וסעיף (ד) לא נכון.
+\end{itemize}
+
+\newpage
+
+\item\points{10}
+נתונה ממ״ל התלויה בפרמטר ממשי
+$a$:
+$$\begin{cases}
+x_1\,\,\,+\quad \quad\,\,\, \, ax_2\,+\,\,\,\,\,(a+1)x_3&=a\\
+ax_1+(a^2+1)x_2+(a^2+2a)x_3&=a^2-1\\
+\quad\quad \quad\quad\quad\quad x_2+\quad\quad\quad\,\, \,2x_3&=a\\
+\end{cases}$$
+אילו מהטענות הבאות בהכרח נכונה?
+\begin{enumerate}
+\begin{multicols}{2}
+\item
+אם קיים פתרון לממ״ל אז הוא יחיד.
+\item
+לכל
+$a\in\rr$
+קיים לממ״ל פתרון.
+\item
+אם
+$a=-1$
+אז לממ״ל יש אינסוף פתרונות.
+\item
+לכל
+$a\in\rr$
+לממ״ל אין פתרון.
+\end{multicols}
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+ 
+ \underline{פתרון:}
+ ננסה להבין מה מצב הפתרונות של הממ״ל, לכן נרשום את מטריצת המקדמים המורחבת שלה ונדרג אותה
+ \begin{align*}
+ \begin{pmatrix}
+ 1&a&a+1&\bigm|&a\\
+ a&a^2+1&a^2+2a&\bigm|&a^2-1\\
+ 0&1&2&\bigm|&a\\
+ \end{pmatrix}
+ &\begin{bmatrix}
+ R_2-aR_1\rightarrow R_2\\
+ \end{bmatrix}
+  \begin{pmatrix}
+ 1&a&a+1&\bigm|&a\\
+ 0&1&a&\bigm|&-1\\
+ 0&1&2&\bigm|&a\\
+ \end{pmatrix}
+ \\&\begin{bmatrix}
+ R_3-R_2\rightarrow R_3\\
+ \end{bmatrix}
+  \begin{pmatrix}
+ 1&a&a+1&\bigm|&a\\
+ 0&1&a&\bigm|&-1\\
+ 0&0&2-a&\bigm|&a+1\\
+ \end{pmatrix}
+ \end{align*}
+הגענו למצב מדורג. אם
+$2-a\neq0$,
+כלומר
+$a\neq 2$
+אז הדרגה היא
+$3$
+ולממ״ל יש פתרון יחיד, מה שסותר את סעיפים (ג),(ד).
+
+אם
+$a=2$
+אז נקבל
+$$ \begin{pmatrix}
+ 1&2&3&\bigm|&2\\
+ 0&1&2&\bigm|&-1\\
+ 0&0&0&\bigm|&3\\
+ \end{pmatrix}
+$$
+ובגלל השורת סתירה, לממ״ל אין פתרון, אז סעיף (ב) שגוי.
+מכך נקבל  שהסעיף הנכון הוא סעיף (א).
+\newpage
+
+%%%
+%%%%%%
+%%%
+
+\item\points{10}
+תהי
+$A\in M_{4\times 3}(\cc)$
+מטריצה מדורגת קנונית, עבורה
+$\mathrm{rank}(A)=2$
+ כך שהוקטור
+$(1,0,-2)$
+פתרון של הממ״ל
+$AX=0$.
+למה שווה סכום כל האיברים בעמודה השלישית של
+$A$:
+\begin{enumerate}
+\begin{multicols}{4}
+\item
+$1$
+\item
+$-2$
+\item
+$0$
+\item
+$\frac{1}{2}$
+\end{multicols}
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+המטריצה מדורגת קנונית, עם
+$4$
+שורות ודרגתה שווה
+$2$
+לכן היא מהצורה
+$$A=
+\begin{pmatrix}
+*&*&*\\
+*&*&*\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix}$$
+כאשר שתי השורות הראשונות אינן שורות אפסים, אז בעלות איבר מוביל. האפשרויות הן:
+$$
+\begin{pmatrix}
+1&0&*\\
+0&1&*\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix},\quad
+\begin{pmatrix}
+1&*&0\\
+0&0&1\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix},\quad
+\begin{pmatrix}
+0&1&0\\
+0&0&1\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix}$$
+הוקטור
+$(1,0,-2)$
+אינו פתרון של 
+$AX=0$
+עבור שתי האופציות הימניות, כלומר בהכרח מתקיים
+$$A=\begin{pmatrix}
+1&0&a_{13}\\
+0&1&a_{23}\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix}$$
+וכעת הוקטור
+$(1,0,-2)$
+הוא פתרון של
+$AX=0$
+אם ורק אם
+$$\begin{cases}
+1\cdot 1+0\cdot 0+a_{13}\cdot(-2)=0\\
+0\cdot 1+1\cdot 0+a_{23}\cdot (-2)=0\\
+\end{cases}$$
+כלומר
+$a_{13}=\frac{1}{2}, 2_{23}=0$,
+ולסיכום
+$$A=\begin{pmatrix}
+1&0&1/2\\
+0&1&0\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix}$$
+ואז סכום  כל האיברים בעמודה השלישית של
+$A$
+הוא
+$\frac{1}{2}$,
+והתשובה הנכונה היא (ד).
+
+\newpage
+
+
+%%%
+%%%%%%
+%%%
+
+
+
+\item\points{10}
+נתונות המטריצות הבאות
+$$A=\begin{pmatrix}
+1&2+i\\i+1&2\\
+\end{pmatrix}\quad,\quad
+B=\begin{pmatrix}
+2i&1\\0&i\\
+\end{pmatrix}$$
+ותהי
+$C\in M_{2\times 2}(\cc)$
+מטריצה  המקיימת
+$A\cdot C=B$.
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\begin{multicols}{2}
+\item
+$(C)_{1,1}-(C)_{2,1}=2$
+\item
+$(C)_{1,1}-(C)_{2,1}=-2$
+\item
+$(C)_{1,1}-(C)_{2,1}=i$
+\item
+$(C)_{1,1}-(C)_{2,1}=-i$
+\end{multicols}
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+מהנתון
+$AC=B$
+נרצה למצוא את 
+$C$
+ולכן נבדוק אם
+$A$
+הפיכה כדי שנכפיל בהופכית שלה:
+נחשב
+$$,\det(A)=1\cdot 2 -(i+1)(2+i)=-3i+1\neq 0$$
+לכן
+$A$
+הפיכה ומתקיים
+$$.A^{-1}=\frac{1}{1-3i}
+\begin{pmatrix}
+2&-2-i\\
+-i-1&1\\
+\end{pmatrix}$$
+מכאן נסיק כי
+$$C=A^{-1}B=
+\frac{1}{1-3i}
+\begin{pmatrix}
+2&-2-i\\
+-i-1&1\\
+\end{pmatrix}\cdot
+\begin{pmatrix}
+2i&1\\0&i\\
+\end{pmatrix}
+=\frac{1}{1-3i}
+\begin{pmatrix}
+4i&*\\
+2-2i&*\\
+\end{pmatrix}$$
+ולכן
+$$.(C)_{1,1}-(C)_{2,1}
+=
+\frac{4i}{1-3i}-
+\frac{2-2i}{1-3i}=
+\frac{6i-2}{1-3i}=-2$$
+\newpage
+%%%
+%%%%%%
+%%%
+
+\item\points{10}
+מה הטענות הבאות בהכרח נכונה?
+\begin{enumerate}
+\item
+אם
+$A\in M_{3\times 3}(\rr)$
+אלכסונית, אז לכל
+$B\in M_{3\times 3}(\rr)$
+מתקיים
+$AB=BA$.
+\item
+אם
+$E_1,E_2\in M_{3\times 3}(\rr)$
+מטריצות אלמנטריות, אז
+$E_1\cdot E_2= E_2\cdot E_1$.
+\iffalse
+\item
+אם
+$A\cdot B$
+משולשית עליונה, אז
+$A$
+משולשית עליונה וגם
+$B$
+משולשית עליונה.
+\fi
+\item
+אם 
+$E\in M_{3\times3}(\rr)$
+אלמנטרית,
+אז
+$E^t$
+היא אלמנטרית.
+\item
+אם
+$A\in M_{3\times 3}(\rr)$
+מקיימת
+$A^2=0_{3\times 3}$,
+אז
+$A=0_{3\times 3}$.
+\end{enumerate}
+
+
+%%%
+%%%%%%
+%%%
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+\item[$\bullet$]
+בסעיף (א) נשאלנו האם כל מטריצה אלכסונית מתחלפת (בכפל) עם כל מטריצה אחרת, זה לא נכון (עבור סקלרית, לא רק אלכסונית, זה היה נכון). למשל, נקח
+$A=\begin{pmatrix}
+1&0&0\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix}, 
+B=\begin{pmatrix}
+1&2&3\\
+4&5&6\\
+7&8&9\\
+\end{pmatrix}$
+אז מתקיים
+$$.AB=\begin{pmatrix}
+1&2&3\\
+0&0&0\\
+0&0&0\\
+\end{pmatrix}\neq
+\begin{pmatrix}
+1&0&0\\
+4&0&0\\
+7&0&0\\
+\end{pmatrix}=BA$$
+\item[$\bullet$]
+סעיף (ב) לא נכון, כי אם נפעיל שני פש״אים על מטריצת היחידה זה מאוד משנה באיזה סדר נבצע את הפעולות. למשל, אם נחליף שורות ואז נכפיל את השורה הראשונה ב-$2$
+או להיפך, נקבל תוצאות שונות: הנה דוגמה נגדית, נקח 
+$E_1=\begin{pmatrix}
+0&1&0\\
+1&0&0\\
+0&0&1\\
+\end{pmatrix},
+E_2=\begin{pmatrix}
+2&0&0\\
+0&1&0\\
+0&0&1\\
+\end{pmatrix}$
+אז
+$.E_1E_2=\begin{pmatrix}
+0&1\\2&0\\
+\end{pmatrix}\neq
+\begin{pmatrix}
+0&2\\1&0\\
+\end{pmatrix}=
+E_2E_1$
+\item[$\bullet$]
+בסעיף (ג) שאלו האם שחלוף של כל מטריצה אלמנטרית יצא מטריצה אלמנטרית גם כן. בגלל שמטריצות אלמנטריות הן פשוטות מאוד, נבודק זאת באופן ידני. נעבור על רשימת המטריצות האלמנטריות, נשחלף אותן ונראה כי הן גם אלמנטריות:
+עבור פש״א שהוא החלפת שורה
+\begin{align*}
+,E=\begin{pmatrix}
+1&0&0\\
+0&0&1\\
+0&1&0\\
+\end{pmatrix},
+\begin{pmatrix}
+0&1&0\\
+1&0&0\\
+0&0&1\\
+\end{pmatrix},
+\begin{pmatrix}
+0&0&1\\
+0&1&0\\
+1&0&0\\
+\end{pmatrix}
+\Longrightarrow
+E^t=E
+\end{align*}
+עבור פש״א שהוא הכפלת שורה בסקלר
+\begin{align*}
+,E=\begin{pmatrix}
+\alpha&0&0\\
+0&1&0\\
+0&0&1\\
+\end{pmatrix},
+\begin{pmatrix}
+1&0&0\\
+0&\alpha&0\\
+0&0&1\\
+\end{pmatrix},
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&\alpha\\
+\end{pmatrix}
+\Longrightarrow
+E^t=E
+\end{align*}
+עבור פש״א מסוג
+$R_i+\alpha R_j\rightarrow R_i$,
+נקבל כי
+$E^t$
+היא  אלמנטרית המתאימה לפש״א
+$R_j+\alpha R_i\rightarrow R_j$.
+למשל,
+\begin{align*}
+.E=\begin{pmatrix}
+1&\alpha&0\\
+0&1&0\\
+0&0&1\\
+\end{pmatrix}
+\Longrightarrow
+E^t=\begin{pmatrix}
+1&0&0\\
+\alpha&1&0\\
+0&0&1\\
+\end{pmatrix}
+\end{align*}
+\item[$\bullet$]
+סעיף (ד) שגוי כי אנו מכירים מטריצות שאינן מטריצות האפס, אשר בריבוע שוות למטריצת האפס, למשל
+$$.A=\begin{pmatrix}
+0&0&1\\0&0&0\\0&0&0\\
+\end{pmatrix}$$
+\newpage
+
+\item\points{10}
+תהיינה
+$A,B\in M_{\ntn}(\rr)$
+מטריצות המקיימות
+$\det(A)=-1$,
+$\det(B)=2$
+וגם
+
+$\det(2B^{-1}AB^tA^2B)=-16$.
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\begin{multicols}{4}
+\item
+$n=1$
+\item
+$n=2$
+\item
+$n=3$
+\item
+$n=4$
+\end{multicols}
+\end{enumerate}
+
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+בעזרת כללי החישוב עבור דטרמיננטות נקבל כי
+\begin{align*}
+\det(2B^{-1}AB^tA^2B)
+&=2^n\cdot \det(B^{-1})\cdot\det(A)\cdot\det(B^t)\cdot\det(A^2)\cdot\det(B)
+\\&=2^n\cdot
+\frac{1}{\det(B)}\cdot
+\det(A)\cdot
+\det(B)\cdot
+(\det(A))^2\cdot \det(B)
+\\&=2^n\cdot (-1)^3\cdot 2=-2^{n+1}=-16
+\end{align*}
+ולכן 
+$n=3$,
+כלומר סעיף (ג) נכון.
+
+\newpage
+
+%%%
+%%%%%%
+%%%
+
+\item\points{10}
+תהי
+$$.A=\begin{pmatrix}
+1&2&1\\
+1&3&1\\
+3&7&4\\
+\end{pmatrix}$$
+ונסמן
+$.c= (A^{-1})_{1,1}+(A^{-1})_{2,2}+(A^{-1})_{3,3}$
+\iffalse
+בעזרת מציאת
+$A^{-1}$
+(או בכל דרך אחרת בה תבחרו), 
+\fi
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\begin{multicols}{4}
+\item
+$c=1$
+\item
+$c=3$
+\item
+$c=5$
+\item
+$c=7$
+\end{multicols}
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+נמצא את המטריצה ההופכית של
+$A$
+בעזרת האלגוריתם המוכר:
+נדרג את
+\begin{align*}
+\begin{pmatrix}
+1&2&1&\bigm|&1&0&0\\
+1&3&1&\bigm|&0&1&0\\
+3&7&4&\bigm|&0&0&1\\
+\end{pmatrix}
+&\begin{bmatrix}
+R_2-R_1\rightarrow R_2\\
+R_3-3R_1\rightarrow R_3\\
+\end{bmatrix}
+\begin{pmatrix}
+1&2&1&\bigm|&1&0&0\\
+0&1&0&\bigm|&-1&1&0\\
+0&1&1&\bigm|&-3&0&1\\
+\end{pmatrix}
+\\&\begin{bmatrix}
+R_1-2R_2\rightarrow R_1\\
+R_3-R_1\rightarrow R_3\\
+\end{bmatrix}
+\begin{pmatrix}
+1&0&1&\bigm|&3&-2&0\\
+0&1&0&\bigm|&-1&1&0\\
+0&0&1&\bigm|&-2&-1&1\\
+\end{pmatrix}
+\\&\begin{bmatrix}
+R_1-R_3\rightarrow R_3\\
+\end{bmatrix}
+\begin{pmatrix}
+1&0&0&\bigm|&5&-1&-1\\
+0&1&0&\bigm|&-1&1&0\\
+0&0&1&\bigm|&-2&-1&1\\
+\end{pmatrix}
+\end{align*}
+לכן
+$A$
+הפיכה,
+ וההופכית שלה נתונה על ידי
+ $$A^{-1}=
+ \begin{pmatrix}
+5&-1&-1\\
+-1&1&0\\
+-2&-1&1\\
+\end{pmatrix}$$
+אז
+$c=5+1+1=7$
+והתשובה הנכונה היא (ד).
+%%%
+%%%%%%
+%%%
+
+%%%
+%%%%%%
+%%%
+
+\newpage
+
+\item\points{10}
+תהיינה
+$$A=\begin{pmatrix}
+1&2&3\\
+0&1&4\\
+0&0&1\\
+\end{pmatrix}\quad,
+B=
+\begin{pmatrix}
+3&2&1\\
+4&1&0\\
+-4&0&0\\
+\end{pmatrix},\quad
+C=
+\begin{pmatrix}
+1&0&2\\
+-2&1&0\\
+2&0&4\\
+\end{pmatrix}$$
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+\begin{multicols}{2}
+\item
+$\det(ABC)=39$
+\item
+$\det(A+B+C)=39$
+\item
+$\det(CBA)=39$
+\item
+$\det(B^tAC^t)=39$
+\end{multicols}
+\end{enumerate}
+
+\noindent\rule{16cm}{0.4pt}
+
+\underline{פתרון:}
+בסעיפים (א),(ג),(ד) נשתמש בתכונת הכפליות של הדטרמיננטה ולכן נצטרך את הדטרמיננטות של המטריצות:
+$\det(A)=1$
+כי היא משולשית עליונה וזוהי מכפלת איברי האלכסון,
+$\det(C)=0$
+כי המטריצה
+$C$
+אינה הפיכה: ניתן לראות זאת על ידי ביצוע פש״א אחד
+$R_3-2R_1\rightarrow R_3$
+ונקבל שורת אפסים בדירוג הקנוני.
+לכן
+$$\det(ABC)=\det(A)\det(B)\det(C)=0$$
+באופן דומה נקבל
+$\det(CBA)=0$,
+ובגלל ש-$\det(C^t)=\det(C)$
+אז גם
+$\det(B^tAC^t)=0$.
+
+כך פסלנו את כל הסעיפים פרט ל-(ב). ניתן לבדוק באופן ישיר כי הוא נכון:
+$$A+B+C=
+\begin{pmatrix}
+5&4&6\\
+2&3&4\\
+-2&0&5\\
+\end{pmatrix}$$
+ולכן
+$$.\det
+\begin{pmatrix}
+5&4&6\\
+2&3&4\\
+-2&0&5\\
+\end{pmatrix}
+=
+(-2)(16-18)+5(15-8)=4+35=39$$
+
+\iffalse
+\newpage
+
+\item\points{10}
+מצאו את המטריצה
+$A\in M_{3\times 3}(\rr)$
+המקיימת את התנאים הבאים:
+\begin{itemize}
+\item
+$A$
+אנטי-סימטרית,
+\item
+הוקטור
+$(1,1,1)$
+הוא פתרון של הממ״ל ההומוגנית
+$AX=0$.
+\iffalse
+\item
+סכום העמודות של
+$A$
+שווה ל-$\begin{pmatrix}0\\0\\0\\
+\end{pmatrix}$,
+\fi
+\item
+$(A)_{1,3}=1$.
+\end{itemize}
+
+תשובה: 
+$$.A=$$
+
+\noindent\rule{16cm}{0.4pt}
+
+\fi
+%%%
+%%%%%%
+%%%
+
+
+\end{enumerate}
+
+
+\end{document}

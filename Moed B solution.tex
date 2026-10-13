@@ -1,0 +1,1871 @@
+% !TeX spellcheck = he_IL
+%% ! TEX TS-program = xelatexmk
+% above: commands appropriate for TeXShop in mac OS
+\documentclass[12pt, a4paper]{article}
+\usepackage{etoolbox}
+\usepackage{bbm}
+%\usepackage{pifont}
+\usepackage{tikz}
+%\input{preamble/UnitPreamble}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%  Exam Template
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtoggle{testreview}
+\toggletrue{testreview}  
+\togglefalse{testreview} % uncomment to make it ready for exam unit
+\newtoggle{testsolution}
+\toggletrue{testsolution}  
+\togglefalse{testsolution} % comment to show solutions
+\newcounter{version}
+\setcounter{version}{2}  % version of multiple-choice
+
+	
+
+
+
+
+
+\usepackage{graphicx}
+
+\usepackage{braket}
+\usepackage[a4paper, top=3cm,left=2.5cm, right=2.3cm, bottom=2.7cm]{geometry}
+\usepackage{amsmath, amssymb, array, multicol, enumitem}
+\usepackage{pdfpages}
+\usepackage{comment, graphicx}  
+\usepackage{xparse}
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{pgffor}
+\usepackage[colorlinks=true]{hyperref} 
+\AtBeginDocument{%
+	\hypersetup{pdfborder={0 0 0},
+		urlcolor=blue}%
+}
+
+\usepackage{wasysym}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{polyglossia}
+\setdefaultlanguage{hebrew}
+\setotherlanguage{english}
+%\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX, Scale=1.1, WordSpace =1.05]{David}
+%\newfontfamily\hebrewfont[Script=Hebrew, Ligatures=TeX, Scale=1.1, WordSpace=1.05]{David  CLM}
+\newfontfamily\hebrewfont[Script=Hebrew]{Times New Roman}
+%\newfontfamily\hebrewfont[Script=Hebrew]{Ezra SIL}
+
+% Hebrew monospace font (must support Hebrew)
+\newfontfamily\hebrewfonttt[Script=Hebrew]{FreeMono}
+
+%http://tex.stackexchange.com/questions/141231/equation-number-enclosing-parentheses-misplaced-with-polyglossiahebrewamsmath
+\makeatletter
+%\def\maketag@@@#1{\hbox{\m@th\normalfont\LRE{#1}}}
+\def\tagform@#1{\maketag@@@{(\ignorespaces#1\unskip)}}
+\makeatother
+
+%
+% Hebrew fonts are two small 
+%
+\fontsize{14}{15}
+
+%
+% Package fro proper positioning of logo
+%
+\usepackage[absolute]{textpos}
+
+
+% http://tex.stackexchange.com/questions/10589/fix-nested-section-numbers-in-rtl-languages-with-polyglossia/
+\makeatletter
+\renewcommand{\SepMark}[1]{\def\@SepMark{#1}}
+\makeatother
+\SepMark{.}
+\robustify\hebrewnumeral
+\robustify\Hebrewnumeral
+\robustify\Hebrewnumeralfinal
+
+
+% from polyglossia docs
+%\gappto\captionshebrew{%
+\def\urladdrname{{\itshape כתובת רשת}}
+\def\emailaddrname{{\itshape כתובת דואל}}
+%}
+
+% https://tex.stackexchange.com/questions/176661/polyglossia-arabic-text-english-bibliography
+\makeatletter
+\let\orig@MakeUppercase \MakeUppercase
+\makeatother
+\providecommand{\MakeUppercase}[1]{#1}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%   User Commands
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\heb}[1]{\begin{small}\R{#1}\end{small}}
+\newcommand{\hebt}[1]{\begin{scriptsize}\R{#1}\end{scriptsize}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+%\renewcommand{\phi}{\varphi}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\lr}[1]{\left(#1\right)}
+
+
+\newcommand{\ff}{\mathbb{F}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\mtn}{m\times n}
+\newcommand{\longr}{\longrightarrow}
+\newcommand{\longrl}{\longleftrightarrow}
+\newcommand{\ol}{\overline}
+\newcommand{\ntn}{n\times n}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\im}{\mathrm{Im}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\qq}{\mathbb{Q}}
+\DeclareMathOperator{\vol}{vol}
+
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\deter}{det}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\tr}{tr}
+
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+
+
+%%%% new for complex functions
+
+\newcommand{\Arg}{\mathrm{Arg}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\goes}{\longrightarrow}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Log}{\mathrm{Log}}
+
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{   } #2 \\
+			#3 & \mbox{   } #4
+		\end{array}
+	\right.
+}
+
+\newcommand{\solutionword}{\textbf{פתרון:}}
+\newcommand{\points}[1]{(#1 נק') }
+\iftoggle{testsolution}{%
+	\newcommand{\sols}[1]{\solutionword$\;\;$ #1$\square$}
+	\newcommand{\spacing}{0cm}
+	\newcommand{\questionspacing}{2.5cm}
+	\newcommand{\extrapages}{}
+}{ %
+%\newcommand{\spacing}{12cm}
+%\newcommand{\halfspacing}{0.5cm}	
+\newcommand{\spacing}{24cm}
+\newcommand{\questionspacing}{\spacing}
+\newcommand{\sols}[1]{}
+\newcommand{\extrapages}{%
+	\newpage
+	\noindent
+	דף זה ריק במכוון ומיועד לשימוש הסטודנט/ית.
+	\newpage
+	\noindent
+	דף זה ריק במכוון ומיועד לשימוש הסטודנט/ית.
+}
+\iftoggle{testreview}{%
+\renewcommand{\spacing}{1cm}
+%\newcommand{\questionspacing}{\spacing}
+\renewcommand{\extrapages}{}	
+}{}	
+}
+
+
+\DeclareMathOperator{\row}{Row}
+
+\DeclareMathOperator{\col}{Col}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%   BEGIN DOCUMENT
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\selectlanguage{hebrew}
+
+
+\newcommand{\semester}{%
+	סמסטר א' תשפ״ו
+}
+\newcommand{\course}{%
+ אלגברה לינארית להנדסה 
+}
+\newcommand{\coursenumber}{9321}	
+\newcommand{\lecturers}{%
+	מרצים: ד״ר י.מייזל, ד״ר נ.גולקו, ד״ר נ.מאיר, ד״ר נ.איידלשטין, ד״ר מ.פורת, ד״ר מ.זיו-אב, ד״ר מ.ברשדסקי
+}
+
+\newcommand{\testdate}{{23.2.26}}
+\iftoggle{testsolution}{%
+	\newcommand{\testtype}{%
+		פתרונות למבחן מועד א'
+	}
+}{%
+	\newcommand{\testtype}{%
+	\boxed{\text{
+	  מועד ב' - פתרון מלא
+	}	}
+}}
+
+\newcommand{\duration}{%
+	3 שעות.
+}
+\newcommand{\helpmaterial}{%
+מחשבון פשוט בלבד.
+}
+
+
+
+\thispagestyle{empty}
+
+\begin{textblock*}{9cm}[0.5,0.5](90mm,3cm)
+	\includegraphics[width=5cm]{logo.jpg}
+\end{textblock*}	
+
+\noindent
+
+\begin{center}
+אוניברסיטת בן-גוריון בנגב - היחידה להוראת קורסי יסוד - %
+\smallskip
+\semester \\
+{\large \bf \course - 214.1.\coursenumber}\\
+\smallskip
+\lecturers\\
+\smallskip
+\smallskip
+\smallskip
+{\Large \testtype }\\
+\end{center}
+
+\noindent
+\textbf{%
+תאריך:
+} \testdate \quad 
+\textbf{משך הבחינה: 
+} \duration \quad
+\textbf{
+חומר עזר: 
+}
+\helpmaterial \\
+דף הנוסחאות מצורף למבחן. אין להכניס כל חומר עזר נוסף.
+\subsection*{חלק א': שאלות רב ברירה}
+\begin{itemize}
+    \item בחלק א' של המבחן יש 8 שאלות רב-ברירה, ומשקל כל שאלה 5 נקודות.
+    \item לכל שאלה יש תשובה אחת נכונה בדיוק. יש לסמן תשובה אחת לכל שאלה \textbf{בטבלה בדף זה}, אין צורך בנימוק.
+    \item שימו לב להנחיות מילוי הטבלה בעמוד הבא.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}||@{}c@{}|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 \\
+\hline
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+\\
+\hline 
+\begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+& 
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+ &
+ \begin{tikzpicture}
+  \draw[dotted] (0,0) circle (0.8cm);
+\end{tikzpicture}
+   \\
+ \hline
+\end{tabular}
+\end{center}
+
+
+\subsection*{חלק ב': שאלות פתוחות}
+\begin{itemize}
+    \item יש לבחור בדיוק 3 מתוך 4 שאלות פתוחות. משקל כל שאלה 20 נקודות.
+
+    \item יש לסמן את השאלות שנבחרו בטבלה בדף זה. שאלות שלא סומנו לא תבדקנה!
+    \item יש לנמק את התשובות בחלק ב' ולכתוב את כל החישובים הרלוונטים.
+    \item יש לענות על כל השאלות בחלק זה על טופס המבחן במקום המיועד אחרי כל שאלה.   
+    
+    \underline{
+    ניתן גם לכתוב מצדו השני של הדף. 
+    }
+    מחברת הטיוטה לא תבדק!
+\end{itemize}
+\bigskip
+
+ בחלק ב' יש לבדוק את השאלות הבאות. סמנו את התשובות המתאימות --  3 שאלות לכל היותר!
+
+
+\begin{center}
+\setlength{\arrayrulewidth}{0.6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textcircled{1} & \textcircled{2} & \textcircled{3} & \textcircled{4}\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\huge{\textbf{בהצלחה!}}
+\end{center}
+\pagebreak
+\subsection*{הוראות למילוי הטבלה}
+\begin{itemize}
+    \item[$\bullet$] יש להשתמש בעט שחור או כחול. 
+    \item[$\bullet$] יש לסמן תשובה אחת בלבד ע"י השחרת העיגול המתאים.
+    \item[$\bullet$]
+    בשאלה בה לא יושחר אף עיגול,
+    הניקוד יהיה 0.
+    \item[$\bullet$] בשאלה בה יושחרו יותר מעיגול אחד, הניקוד יהיה 0.
+.
+    \item[$\bullet$] כדי לתקן סימון, יש לסמן X
+    על התשובה הלא נכונה ולהשחיר את התשובה הנכונה.
+
+    \item[$\bullet$]
+    \textbf{שימו לב:}
+    לא ניתן לבחור סעיף שסומן עליו X
+    לכן הקפידו לסמן את תשובתכם כשאתם בטוחים בה.
+\end{itemize}
+
+\subsection*{דוגמאות}
+
+
+\begin{center}
+\begin{tabular}{|c||c||c||c||c||c||c||c||c||c|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+\begin{tabular}{c}
+\\\Large{\CIRCLE}\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+\  \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\
+\textcircled{א}
+\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\ \  \hspace{-8pt}\raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\textcircled{א}\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ב}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ד}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\textcircled{ג}\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+&
+\begin{tabular}{cccc}
+\\\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}
+\\\\
+\hspace{-8pt}\ \  \raisebox{0pt}[0pt][0pt]{\Large\CIRCLE}%
+ \ \hspace{4pt}\llap{\raisebox{-4pt}[0pt][0pt]{ $\scalebox{3}{$\times$}$}}\hspace{-8pt}
+\\\\
+\Large{\CIRCLE}\\\\
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\ 
+
+\ 
+
+\begin{itemize}[label=$\bullet$]
+    \item שאלות 1,2,3 עם סימונים תקינים עבור תשובות:
+    \begin{enumerate}
+        \item א
+        \item ב
+        \item ג
+    \end{enumerate}
+    \item בשאלות 4,5,6 חסר סימון והניקוד יהיה 0.
+    \item בשאלות 7,8,9,10
+    יש יותר מסימון אחד והניקוד יהיה 0
+\end{itemize}
+
+
+\end{center}
+
+
+%%%
+%%%
+%%%   End of Header and Instructions
+%%%
+%%%
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% שאלה 2 %%%%%%%
+
+\section*{
+חלק א' 
+(40 נק')
+להשחיר את התשובות בטבלה!}
+\begin{enumerate}
+\item\points{5}
+יהיו
+$H_1,H_2$
+מישורים הנתונים על ידי 
+$$,H_1=\{
+(x,y,z)\in\rr^3 \bigm| x-z=2\},\quad H_2=\{
+(1+t, 1-t+s, s)
+\bigm| t,s\in\rr\}$$
+עבור
+הישר
+$\ell= H_1\cap H_2$.
+מה מהסעיפים הבאים \underline{\textbf{לא}} נכון.
+\begin{enumerate}
+\item
+קיים
+$x$
+עבורו
+$(x,0,0)\in \ell$
+\item
+\boxed{\text{קיים
+$y$
+עבורו
+$(0,y,0)\in \ell$}}
+\item
+קיים
+$z$
+עבורו
+$(0,0,z)\in \ell$
+\item
+קיים
+$t$
+עבורו
+$(t,0,-t)\in \ell$
+\end{enumerate}
+
+\underline{פתרון:}
+נמצא את ישר החיתוך באופן מפורש. נקודות בחיתוך הן מהצורה
+$(1+t,1-t+s,s)$
+כאשר בנוסף מתקיים
+$(1+t)-s=2$,
+כלומר
+$t=1+s$.
+לסיכום נקבל כי
+$$\ell=\{ (1+(1+s),1-(1+s)+s,s):s\in\rr\}=\{(2+s,0,s)
+:s\in\rr\}$$
+לכן אם נבחר
+$s=0$
+נקבל כי
+$(2,0,0)\in\ell$,
+ואם נבחר
+$s=-2$
+נקבל כי
+$(0,0,-2)\in\ell$,
+כלומר סעיפים (א),(ג) נכונים. נבדוק האם
+$(0,y,0)\in\ell$
+ונקבל כי
+$s=-2$
+וגם
+$s=0$
+וזה כמובן לא יכול להתקיים, לכן סעיף (ב) אינו נכון. לסיום, סעיף (ד) נכון כי ניתן למצוא
+$s$
+עבורו
+$2+s=-s$
+וזה 
+$s=-1$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+
+\item\points{5}
+עבור
+$a\in\rr$
+נתון, נסמן
+$$A=\begin{pmatrix}
+a&1&0\\
+0&a&1\\
+1&0&a\\
+\end{pmatrix}$$
+בחרו את הטענה הנכונה:
+\begin{enumerate}
+ %%%1
+\item
+עבור
+$a=-1$
+המטריצה
+$A$
+הפיכה.
+%%%
+\item
+עבור
+$a=0$
+מתקיים
+$\mathrm{rank}(A)=2$.
+%%%
+\item
+עבור
+$a=2$
+מתקיים
+$\dim(N(A))=\dim(Row(A))$.
+%%%%%%
+\item
+\boxed{\text{עבור
+$a=-3$
+מתקיים
+$\det(A)\neq0$.}}
+%%%
+\end{enumerate}
+
+\underline{פתרון:}
+מבלי לחשב כלום נפסול את סעיף (ג). המטריצה היא בגודל
+$3\times3$
+ולכן בהכרח
+
+$\dim(N(A))+\dim(Row(A))=3$,
+אז לא יכול להיות שאלו יהיו שווים כי אז המימד שלהם יהיה 
+$1.5$,
+מה שלא ייתכן.
+נשים לב כי בסעיף (ד) וגם בסעיף (א) אנו מעוניינים בחישוב הדטרמיננטה של המטריצה, לכן נחשב אותה
+$$\det(A)=a\cdot \det\begin{pmatrix}
+    a&1\\0&a\\
+\end{pmatrix}-1\cdot\begin{pmatrix}
+    0&1\\1&a\\
+\end{pmatrix}=a^3+1$$
+מכאן ניתן לראות כי עבור
+$a=-1$
+מתקיים
+$\det(A)=0$
+אז
+$A$
+אינה הפיכה,
+מה שפוסל את סעיף (א),
+וגם כי
+$\det(A)=(-2)^3+1=-26\neq0$
+עבור
+$a=-3$,
+לכן סעיף (ד) נכון. על הדרך נשים לב כי עבור
+$a=0$
+מתקיים
+$\det(A)/eq0$
+לכן
+$A$
+הפיכה ואז
+$\mathrm{rank}(A)=3\neq2$
+לכן סעיף (ב) לא נכון.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\newpage
+
+\item\points{5}
+תהי $T:\rr^2\to \rr^2$ העתקה לינארית המקיימת
+$T(1,1) = (1,2)$.
+איזה סעיף בהכרח נכון?
+\begin{enumerate}
+\item $\im(T)=\ker(T)$
+\item
+\boxed{\text{$\dim(\im(T))\geq \dim(\ker(T))$}}
+\item $\im(T)\neq \ker(T)$
+\item $\dim(\im(T))\leq \dim(\ker(T))$
+\end{enumerate}
+
+\underline{פתרון:}
+מהנתון האחד שלנו נסיק כי
+$(1,2)\in\im(T)$,
+לכן
+$\dim(\im(T))\ge1$.
+כעת, ממשפט המימדים נקבל שבהכרח
+$$\dim(\ker(T))=2-\dim(\im(T))\le 1$$
+לסיכום, מתקיים
+$\dim(\ker(T))\le 1\le \dim(\im(T))$
+וסעיף (ב) הוא הנכון.
+
+לפסילת הסעיפים האחרים: כל העתקה הפיכה תקיים
+$\im(T)=\rr^2, \ker(T)=\{0\}$
+מה שיפסול את סעיף (א) ואת סעיף (ד), למשל, נגדיר את
+$T(1,0)=(1,0)$
+ובכך הגדרנו העתקה על וקטורי בסיס. קל להשתכנע כי היא הפיכה (בתמונה שלה יש כבר שני וקטורים בת״ל).
+
+כדי
+לפסול את סעיף (ג), נוכל לקחת העתקה עם תמונה וגרעין שווים, למשל נגדיר את 
+$T(1,2)=(0,0)$,
+ואז נדע איך ההעתקה פועלת וקטורי בסיס. בנוסף, מתקיים
+$\im(T)=\mathrm{span}((1,2))=\ker(T)$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+
+%%%%% שאלה 2 %%%%%%%
+
+\item\points{5}
+יהיו
+$a,b\in\rr$
+כך שהקבוצה
+$$\left\{
+\begin{pmatrix}
+a\\1\\1\\
+\end{pmatrix},
+\begin{pmatrix}
+2\\-1\\1-2a\\
+\end{pmatrix},
+\begin{pmatrix}
+2\\b\\-2\\
+\end{pmatrix}
+\right\}$$
+היא בסיס אורתוגונלי של
+$\rr^3$.
+למה שווה
+$a+b$\ ?
+\begin{enumerate}
+\begin{multicols}{4}
+%%%3
+\item
+\boxed{\text{$2$}}
+\smallskip
+%%%2
+\item
+$0$
+\smallskip
+%%%4
+\item
+$4$
+\smallskip
+%%%1
+\item
+$3$
+\smallskip
+\end{multicols}
+\end{enumerate}
+%\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\underline{פתרון:}
+נסמן את הוקטורים
+$v_1,v_2,v_3$
+לפי סדר הופעתם. נתון כי זהו בסיס אורתוגונלי ולכן המכפלות הסלקריות של כל זוג תהיינה שוות אפס, לכן
+$$0=v_1\cdot v_2=2a-1+1-2a,\quad 0=v_1\cdot v_3=2a+b-2,\quad 0=v_2\cdot v_3=4-b-2(1-2a)$$
+נפשט ונקבל כי השניים הראשונים אורתוגונליים ללא תלות בערכי $a,b$
+וכי בהכרח
+$$2a+b=2,\quad 4a-b=-2$$
+ניתן לפתור זאת בקלות ולקבל כי
+$a=0,b=2$
+ולסיכום התשובה הנכונה היא (א).
+
+\noindent\rule{16cm}{0.4pt}
+
+\newpage
+
+
+\item\points{5}
+נתון 
+$B=\{v_1,v_2\}$
+בסיס סדור של
+$\rr^2$
+עבורו מתקיים
+\begin{align*}
+\left[\begin{pmatrix}
+1\\0\\
+\end{pmatrix}\right]_B=
+\begin{pmatrix}
+1\\3 \\
+\end{pmatrix}\quad,\quad
+\left[\begin{pmatrix}
+0\\1\\
+\end{pmatrix}\right]_B=
+\begin{pmatrix}
+2\\5 \\
+\end{pmatrix}
+\end{align*}
+למה שווה
+$v_1+v_2$:
+\begin{enumerate}
+\begin{multicols}{4}
+%%%1
+\item
+$
+\begin{pmatrix}
+1\\4\\
+\end{pmatrix}$
+%%%3
+\item
+$
+\begin{pmatrix}
+0\\-2\\
+\end{pmatrix}$
+%%%4
+\item
+\boxed{\text{
+$
+\begin{pmatrix}
+-3\\
+2\\
+\end{pmatrix}$}}
+%%%2
+\item
+$
+\begin{pmatrix}
+-1\\1\\
+\end{pmatrix}$\end{multicols}
+\end{enumerate}
+
+
+\underline{פתרון:}
+נשתמש בהגדרה של וקטור קורדינטות ונפשט את הנתונים:
+\begin{align*}
+\begin{pmatrix}
+    1\\0\\
+\end{pmatrix}=1\cdot v_1+3\cdot v_2\quad ,\quad\begin{pmatrix}
+    0\\1\\
+\end{pmatrix}=2\cdot v_1+5\cdot v_2
+\end{align*}
+מכאן ניתן למצוא את שני הוקטורים, למשל על ידי
+\begin{align*}
+    \begin{pmatrix}
+        0\\1\\
+    \end{pmatrix}
+    -2\begin{pmatrix}
+        1\\0\\
+    \end{pmatrix}=(2v_1+5v_2)-2(v_1+3v_2)=-v_2
+\end{align*}
+לכן
+$v_2=\begin{pmatrix}
+    2\\-1\\
+\end{pmatrix}$
+ואז
+$v_1=\begin{pmatrix}
+    1\\0\\
+\end{pmatrix}-3\begin{pmatrix}
+    2\\-1\\
+\end{pmatrix}=\begin{pmatrix}
+    -5\\3
+\end{pmatrix}$
+לסיכום נקבל כי
+$v_1+v_2=\begin{pmatrix}
+    -3\\2\\
+\end{pmatrix}$.
+
+\noindent\rule{16cm}{0.4pt}
+%\pagebreak
+
+%%%%
+\item\points{5}
+נתון כי
+$A,B\in M_{\ntn}(\rr)$
+מטריצות שקולות שורה.
+איזו מהטענות הבאות 
+\underline{ בהכרח נכונה:}
+\begin{enumerate}
+%%%2
+\item
+$\det(A)=\det(B)$
+%%%1
+\item
+\boxed{\text{
+$N(A)=N(B)$}}
+%%%4
+\item
+$Av=Bv$
+לכל
+$v\in\rr^n$.
+%%%3
+\item
+$A^2,B^2$
+שקולות שורה.
+\end{enumerate}
+
+\underline{פתרון:}
+סעיף (א) שגוי כי
+$$A=\begin{pmatrix}
+    1&0\\0&1\\
+\end{pmatrix},B=\begin{pmatrix}
+    1&0\\0&2\\
+\end{pmatrix}$$
+הן שקולות שורה אבל
+$\det(A)=1\neq 2\det(B)$.
+בדומה עבור דוגמה זו, מתקיים
+
+$Ae_2=\begin{pmatrix}
+    0\\1\\
+\end{pmatrix}\neq \begin{pmatrix}
+    0\\2\\
+\end{pmatrix}=Be_2$
+לכן סעיף (ג) שגוי.
+כדי לפסול את סעיף (ד), נקח את המטריצות
+$A=\begin{pmatrix}
+  0&1\\0&0\\  
+\end{pmatrix},B=\begin{pmatrix}
+    0&1\\0&1\\
+\end{pmatrix}$
+שהן שקולות שורה אבל
+$$A^2=\begin{pmatrix}
+    0&0\\0&0\\
+\end{pmatrix},
+B^2=\begin{pmatrix}
+    0&1\\0&1\\
+\end{pmatrix}$$
+ואלו כבר לא שקולות שורה.
+לסיום, סעיף (ב) נכון כי אנו יודעים שאם מטריצות הן שקולות שורה (ניתן להגיע לאחת מהשנייה על ידי ביצוע פעולות שורה אלמנטריות) אז יש להן את אותה קבוצת פתרונות לממ״ל ההומוגנית, כלומר
+$N(A)=N(B)$.
+
+
+
+\noindent\rule{16cm}{0.4pt}
+\item\points{5}
+נתון כי
+$A,B\in M_{3\times 3}(\rr)$
+מטריצות מדורגות קנונית.
+איזו מהטענות הבאות 
+\underline{בהכרח נכונה:}
+\begin{enumerate}
+%%%4
+\item
+\boxed{\text{$\det(A)+\det(B)\le 2$}}
+%%%2
+\item
+$A+B$
+מדורגת קנונית.
+%%%1
+\item
+$\det(A)\cdot \det(B)=0$
+%%%3
+\item
+למטריצה
+$A-B$
+יש לפחות שורת אפסים אחת.
+\end{enumerate}
+
+\underline{פתרון:}
+אם נקח
+$A=B=I_3$
+שאלה כמובן מדורגות קנונית, אז
+$A+B=2I_3$
+אינה מדורגת קנונית ופסלנו את סעיף (ב). בנוסף פסלנו את סעיף (ג), כי
+$\det(A)=\det(B)=1$
+ולכן המכפלה שווה
+$1$.
+
+אם נקח את
+$A=I_3,B=0$
+שהן מדורגות קנונית אז 
+$A-B=I_3$
+ואין לה שורת אפסים, אז פסלנו את סעיף (ד).
+לכן
+סעיף (א) נכון. 
+
+ניתן להסביר זאת כך: 
+אם במטריצה מדורגת קנונית אין שורת אפסים אז היא בהכרח
+$I_3$,
+ולכן הדטרמיננטה של מדורגת קנונית תהיה
+$0$
+(אם יש בה שורת אפסים)
+או
+$1$
+(אם אין בה שורת אפסים). בכל מקרה, זה נכון עבור
+$\det(A)$
+וגם עבור
+$\det(B)$
+אז בהכרח
+$\det(A)+\det(B)\le 2$.
+
+\noindent\rule{16cm}{0.4pt}
+
+
+\item\points{5}
+תהי 
+$A\in M_{4\times 4}(\rr)$
+כך ש-
+$\rank(A)=1$. איזו מהטענות הבאות 
+\underline{בהכרח נכונה}?
+\begin{enumerate}
+    \item למטריצה $A$
+    יש 
+    לפחות
+    2 ערכים עצמיים שונים.
+    \item המטריצה $A$ לכסינה.
+        \item המטריצה $A$ אינה לכסינה.
+         \item 
+         \boxed{\text{למטריצה $A$ יש לכל היותר 2 ערכים עצמיים שונים.}}
+\end{enumerate}
+
+\underline{פתרון:}
+נתון כי
+$\rank(A)=1$
+אבל איך נתון זה קשור ללכסינות או לערכים עצמיים? ניזכר כי
+$$\rank(A)=\rank(-A)=\rank(0\cdot I_4-A)=1$$
+מה שגורר כי
+$$\dim(N(0\cdot I_4-A))=4-\rank(0\cdot I_4-A)=3$$
+ולכן נתון זה בעצם אומר לנו כי
+$\lambda=0$
+הוא ערך עצמי של המטריצה
+$A$
+והריבוי הגיאומטרי שלו הוא
+$3$.
+מכאן נסיק כי הריבוי האלגברי שלו הוא לפחות
+$3$,
+מה שאומר כי יכול להיות ערך עצמי אחד נוסף בלבד, כי המטריצה היא בגודל
+$4\times4$,
+כלומר למטריצה יש לכל היותר
+$2$
+ערכים עצמיים שונים, וסעיף (ד) הוא הנכון.
+
+עבור המטריצה
+$$A=\begin{pmatrix}
+    0&0&0&1\\
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+\end{pmatrix}$$
+מתקיים
+$p_A(x)=x^4$
+לכן יש לה ערך עצמי יחיד, וזה פוסל את סעיף (א).
+בנוסף הריבוי האלגברי והגיאומטרי שונים עבור הערך העצמי $0$
+לכן אינה לכסינה, וזה פוסל את סעיף (ב). לסיום, ניתן לקחת מטריצה לכסינה המקיימת את הנתון, למשל אלכסונית עם
+$0$
+המופיע 
+$3$
+פעמים באלכסון בלבד וזה פוסל את סעיף (ג).
+
+\pagebreak
+
+\end{enumerate}
+%%%
+%%%%%%
+%%%
+
+ \pagebreak
+
+\section*{חלק ב' (60 נק') - יש לבחור 3 מתוך 4 ולסמן בעמוד הראשון.}
+יש לענות במקומות המתאימים בעמודים הבאים.
+\begin{enumerate}
+\newcommand{\firstQ}{
+\item\points{20}
+יהי
+$a\in\rr$
+ותהי המטריצה
+$$.A=
+\begin{pmatrix}
+a&2&-1\\
+0&a&0\\
+-a&-2&1\\
+\end{pmatrix}\in
+M_{3\times3}(\rr)$$
+\begin{enumerate}
+%%%%%%% חלק ב, שאלה 1 לכסון, סעיף א %%%%%%%
+\item\points{4}
+מצאו את הפולינום האופייני של
+$A$.
+%%%%%%%חלק ב, שאלה 1 לכסון, סעיף ב %%%%%%%
+\item
+\points{12}
+לכל ערך של
+$a\in\rr$
+קבעו האם 
+$A$
+לכסינה, והסבירו את נימוקיכם/ן.
+%%%%%%חלק ב, שאלה 1 לכסון, סעיף ג %%%%%%
+\item\points{4}
+עבור
+$a=0$
+חשבו את
+$A^{5777}$.
+\end{enumerate}
+
+}
+\firstQ
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\newcommand{\secondQ}{
+\item\points{20}
+נסמן את הבסיס 
+$B=\{v_1,v_2,v_3\}$
+של
+$\rr^3$,
+הנתון על ידי הוקטורים
+$$v_1=\begin{pmatrix}
+2\\1\\1\\
+\end{pmatrix},\,
+v_2=\begin{pmatrix}
+1\\1\\1\\
+\end{pmatrix},\,
+v_3=\begin{pmatrix}
+1\\0\\-1\\
+\end{pmatrix}$$
+נתונה העתקה לינארית
+$T:\rr^3\to\rr^3$
+המקיימת
+ $$
+ .T(v_1)=
+ \begin{pmatrix}
+1\\1\\0\\
+ \end{pmatrix},\,
+ T(v_2)=
+  \begin{pmatrix}
+1\\-1\\2\\
+ \end{pmatrix},
+\,
+  T(v_3)=
+ \begin{pmatrix}
+3\\1\\2\\
+ \end{pmatrix}
+$$
+\begin{enumerate}
+\item\points{8}
+מצאו נוסחה עבור
+$T\begin{pmatrix}
+a\\b\\c\\
+\end{pmatrix}$.
+%%%
+\item\points{8}
+מצאו בסיס אורתונורמלי לגרעין 
+$\ker(T)$
+ומצאו בסיס אורתונורמלי לתמונה
+$\im(T)$.
+\item\points{4}
+האם קיים בסיס
+סדור
+$C$
+של
+$\rr^3$
+עבורו מתקיים
+$$?[T]_C^C=
+\begin{pmatrix}
+0&0&1\\
+0&0&2\\
+0&0&3\\
+\end{pmatrix}$$
+%%%%%
+%%%%%%חלק ב, שאלה 2 העתקות לינאריות, סעיף ג %%%%%%
+\end{enumerate}
+}
+\secondQ
+
+%\noindent\rule{\textwidth-30pt}{0.4pt}
+\pagebreak
+
+\newcommand{\thirdQ}{
+\item\points{20}
+תהי
+$$.A=\begin{pmatrix}
+1&2&-1\\
+-1&1&1\\
+-2&8&2\\
+\end{pmatrix}
+\in M_{3\times 3}(\rr)$$
+יהיו
+$U,W$
+תתי-המרחבים של
+$\rr^3$
+המוגדרים על ידי
+$$.W=\Set{A\cdot v | v\in \rr^3},\quad
+U=N(A)
+$$
+\begin{enumerate}
+%%%%%%% חלק ב, שאלה 3 ארותוגונליות, סעיף א %%%%%%%
+\item\points{6}
+מצאו בסיס ומימד של
+$W$.
+%%%
+\item\points{5}
+מצאו בסיס ומימד של
+$U$.
+%%%
+%%%
+\item\points{6}
+מצאו בסיס ומימד של
+$U\cap W$ ושל $U+W$.
+%%%%%
+\item
+\points{3}
+האם קיים וקטור
+$0\neq v\in\rr^3$
+המקיים
+$v\in Row(A)\cap Col(A)$?
+%%%%%%%חלק ב, שאלה 3 ארותוגונליות, סעיף ב %%%%%%%
+\end{enumerate}
+
+}
+\thirdQ
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+\newcommand{\forthQ}{
+    \item \points{20}
+    הסעיפים הבאים לא קשורים אחד לשני:
+    \begin{enumerate}
+        \item\points{10} 
+        תהי $T:V\to W$ \ 
+        העתקה לינארית
+        ויהיו
+        $v_1,v_2,v_3\in V$.
+        
+        הוכיחו כי אם
+        $T(v_1),T(v_2),T(v_3)$
+        בלתי תלויים לינארית (בת"ל),
+        
+        אז גם
+        $v_1,v_2,v_3$
+        בלתי תלויים לינארית (בת"ל).
+
+        \ 
+        
+        \item\points{10} 
+        תהי מטריצה $A\in M_{n\times n}(\cc)$ כך ש- $A^2=A$ ויהי
+        $\lambda$
+        ערך עצמי של $A$.
+
+        הראו כי
+        $\lambda=1$ או $\lambda = 0$.
+    
+    \end{enumerate}
+}\forthQ
+\pagebreak
+\setcounter{enumi}{0}
+    \firstQ
+\noindent\rule{\textwidth-30pt}{0.4pt}
+\underline{פיתרון:}
+    \begin{enumerate}
+        \item 
+נחשב את הפולינום האופייני בעזרת ההגדרה שלו
+\begin{align*}
+    p_A(x)=\det(xI_3-A)=
+    \det\begin{pmatrix}
+        x-a&-2&1\\
+        0&x-a&0\\
+        a&2&x-1\\
+    \end{pmatrix}\underset{(*)}{=}
+    (x-a)\det\begin{pmatrix}
+        x-a&1\\
+        a&x-1\\
+    \end{pmatrix}
+\end{align*}
+כאשר 
+$(*)$
+זה פיתוח לפי השורה השנייה. 
+נפתח את הדטרמיננטה האחרונה ונקבל
+$$p_A(x)=(x-a)(x^2-x-ax+a-a)=(x-a)x(x-1-a)$$
+        \item 
+מהחישוב בסעיף הקודם נקבל כי הערכים העצמיים של
+$A$
+הם
+$0,a,a+1$.
+נחלק כעת למקרים:
+\begin{itemize}
+    \item 
+אם
+$a\neq 0,-1$
+אז הערכים העצמיים
+$0,a,a+1$
+הם שונים ובגלל שהמטריצה היא בגודל
+$3\times3$
+ויש לה שלושה ערכים עצמיים שונים, כל אחד מריבוי אלגברי
+$1$
+אז גיאומטרי
+$1$
+והמטריצה לכסינה.
+    \item 
+אם
+$a=0$
+קיבלנו כי
+$p_A(x)=x^2(x-1)$
+אז
+הערך העצמי
+$\lambda=1$
+הוא מריבוי אלגברי
+$1$
+ואז גיאומטרי
+$1$.
+הערך העצמי
+$\lambda=0$
+הוא מריבוי אלגברי
+$2$
+אז נבדוק מהו הריבוי הגיאומטרי שלו, בעזרת מציאת המרחב העצמי שלו:
+\begin{align*}
+    N(0\cdot I_3-A)=N\begin{pmatrix}
+        0&-2&1\\
+        0&0&0\\
+        0&2&-1\\
+    \end{pmatrix}
+\end{align*}
+ולאחר ביצוע פעולת שורה אלמנטרית אחת נקבל סך הכל משוואה אחת
+$2x_2-x_3=0$,
+מה שאומר שיש שני משתנים חפשיים ואז
+$\dim(N(0\cdot I_3-A))=2$,
+כלומר הריבוי הגיאומטרי הוא
+$2$
+וזה שווה לריבוי האלגברי של ערך עצמי זה. לסיכום, המטריצה 
+$A$
+לכסינה.
+ \item 
+ בדומה, 
+אם
+$a=-1$
+קיבלנו כי
+$p_A(x)=x^2(x+1)$
+אז
+הערך העצמי
+$\lambda=-1$
+הוא מריבוי אלגברי
+$1$
+ואז גיאומטרי
+$1$.
+הערך העצמי
+$\lambda=0$
+הוא מריבוי אלגברי
+$2$
+אז נבדוק מהו הריבוי הגיאומטרי שלו, בעזרת מציאת המרחב העצמי שלו:
+\begin{align*}
+    N(0\cdot I_3-A)=N\begin{pmatrix}
+        1&-2&1\\
+        0&1&0\\
+        -1&2&-1\\
+    \end{pmatrix}
+\end{align*}
+ולאחר דירוג המטריצה הזו נקבל את הדירוג הקנוני
+$\begin{pmatrix}
+    1&0&1\\
+    0&1&0\\
+    0&0&0\\
+\end{pmatrix}$
+מה שאומר כי מימד מרחב הפתרונות יהיה
+$1$
+ואז הריבוי הגיאומטרי שונה מהאלגברי והמטריצה
+$A$
+אינה לכסינה.
+\end{itemize}
+        \item 
+        עבור
+        $a=0$
+        ראינו כי המטריצה לכסינה וכי ערכיה העצמיים הם
+        $1,0$
+        כאשר
+        $0$
+        מריבוי אלגברי
+        $2$,
+        לכן מתקיים
+        $A=PDP^{-1}$
+        כאשר
+        $D=\begin{pmatrix}
+            0&0&0\\
+            0&0&0\\
+            0&0&1\\
+        \end{pmatrix}$
+        ואז
+        $$A^{5777}=PD^{5777}P^{-1}=PDP^{-1}=A=
+        \begin{pmatrix}
+        0&2&-1\\
+        0&0&0\\
+        0&-2&1\\
+    \end{pmatrix}$$
+    \end{enumerate}
+    \pagebreak \ 
+    \ 
+    
+
+
+    
+    \secondQ
+    \noindent\rule{\textwidth-30pt}{0.4pt}
+    \underline{פיתרון:}
+\begin{enumerate}
+\item 
+נשתמש בלינאריות של
+$T$
+ובכך שאנו יודעים איך היא פועלת על הבסיס הנתון:
+$$T(e_1)=T(v_1-v_2)=T(v_1)-T(v_2)=\begin{pmatrix}
+    1\\1\\0\\
+    \end{pmatrix}-\begin{pmatrix}
+        1\\-1\\2\\
+\end{pmatrix}=
+\begin{pmatrix}
+    0\\2\\-2\\
+\end{pmatrix}$$
+כעת
+$$T(e_3)=T(e_1-v_3)=T(e_1)-T(v_3)
+=
+\begin{pmatrix}
+    0\\2\\-2\\
+\end{pmatrix}-
+\begin{pmatrix}
+    3\\1\\2\\
+\end{pmatrix}=\begin{pmatrix}
+    -3\\1\\-4\\
+\end{pmatrix}$$
+ואז
+$$T(e_2)=T(v_2-e_1-e_3)=T(v_2)-T(e_1)-T(e_3)=
+\begin{pmatrix}
+    1\\-1\\2\\
+\end{pmatrix}-
+\begin{pmatrix}
+    0\\2\\-2\\
+\end{pmatrix}
+-\begin{pmatrix}
+    -3\\1\\-4\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+    4\\-4\\8\\
+\end{pmatrix}$$
+ולסיכום מהלינאריות נקבל
+$$T\begin{pmatrix}
+    a\\b\\c\\
+\end{pmatrix}=a\cdot T(e_1)+b\cdot T(e_2)+c\cdot T(e_3)=
+\begin{pmatrix}
+   4b-3c  \\2a-4b+c \\-2a+8b-4c\\
+\end{pmatrix}$$
+\item 
+מהנוסחה של ההעתקה, נסיק כי
+$T=T_A$
+כאשר
+$A=\begin{pmatrix}
+    0&4&-3\\
+    2&-4&1\\
+    -2&8&-4\\
+\end{pmatrix}$
+ולכן באופן ישיר
+$$\ker(T)=N(A),\quad \im(T)=\mathrm{Col}(A)$$
+נדרג את
+$A$
+כדי לקבל את שני תתי-המרחבים האחרונים. הדירוג הקנוני של
+$A$
+יהיה
+$$\begin{pmatrix}
+   1&0&-1\\
+   0&1&-3/4\\
+   0&0&0\\
+\end{pmatrix}$$
+לכן 
+$$\ker(T)=N(A)=\left\{
+\begin{pmatrix}
+    t\\ 3/4t\\ t
+\end{pmatrix}:t\in\rr
+\right\}=\mathrm{span}
+\begin{pmatrix}
+    4\\3\\4\\
+\end{pmatrix}$$
+לכן בסיס אורתונורמלי לגרעין יהיה 
+$$\left\{
+\frac{1}{\sqrt{41}}\cdot \begin{pmatrix}
+    4\\3\\4\\
+\end{pmatrix}
+\right\}
+$$
+מהדירוג של
+$A$
+נקבל כי שתי העמודות הראשונות של המטריצה יהוו בסיס למרחב העמודות שלה, אך זהו לא בסיס אורתוגונלי כלל, לכן נשתמש בתהליך גראם-שמידט:
+נסמן
+$v_1=\begin{pmatrix}
+    0\\2\\-2\\
+\end{pmatrix},v_2=\begin{pmatrix}
+    4\\-4\\8\\
+\end{pmatrix}$
+אז מגראם-שמידט נקבל
+$$u_1=v_1=\begin{pmatrix}
+    0\\2\\-2\\
+\end{pmatrix},\quad u_2=v_2-\left(\frac{v_2\cdot u_1}{u_1\cdot u_1}\right)v_1=v_2-\frac{-24}{8}\cdot v_1=v_2+3v_1=\begin{pmatrix}
+    4\\2\\2\\
+\end{pmatrix}$$
+זהו בסיס אורתוגונלי של
+$\mathrm{Col}(A)$
+אך רצינו בסיס אורתונורמלי ולכן ננרמל את שני הוקטורים ונקבל את הבסיס האורתונורמלי הבא
+$$\left\{
+\frac{1}{\sqrt{8}}\cdot 
+\begin{pmatrix}
+    0\\2\\-2\\
+\end{pmatrix},
+\frac{1}{\sqrt{24}}\cdot \begin{pmatrix}
+    4\\2\\2\\
+\end{pmatrix}
+\right\}$$
+הערה: לאחר מציאת הגרעין, ניתן להסיק כי
+$\dim(\im(T))=2$
+ואז  ניתן לומר  כי
+$T(v_1),T(v_2),T(v_3)$
+פורשים את
+$\mathrm{Col}(A)=\im(T)$
+אבל השניים הראשונים כבר אורתוגונליים
+לכן הם בת״ל ומהווים בסיס של התמונה! כעת מה שנשאר זה רק לנרמל אותם.
+
+\item 
+התשובה היא לא!
+אם היה קיים כזה בסיס
+$C=\{u_1,u_2,u_3\}$
+אז היינו מקבלים
+מההגדרה של מטריצה מייצגת כי
+$T(u_1)=T(u_2)=0$,
+מה שאומר כי
+$u_1,u_2\in \ker(T)$
+ואז
+$\dim(\ker(T))\ge2$,
+אבל
+$\dim(\ker(T))=1$
+לכן זה לא ייתכן.
+\end{enumerate}
+
+
+
+    \ 
+    
+    \pagebreak
+
+    \thirdQ
+    \noindent\rule{\textwidth-30pt}{0.4pt}
+    \underline{פיתרון:}
+\begin{enumerate}
+    \item 
+תת-המרחב
+$W$
+הוא בעצם מרחב העמודות של המטריצה
+$A$,
+כי
+$A\cdot\begin{pmatrix}
+    a\\b\\c\\
+\end{pmatrix}=a\cdot C^A_1+ b\cdot C_2^A+c\cdot C_3^A$
+ולכן
+\begin{align*}W=\left\{
+A\cdot v \bigm| v\in\rr^3
+\right\}&=
+\left\{
+A\cdot\begin{pmatrix}
+    a\\b\\c\\
+\end{pmatrix}
+\bigm| a,b,c\in\rr
+\right\}\\&=
+\left\{
+a\cdot C^A_1+ b\cdot C_2^A+c\cdot C_3^A
+\bigm|
+a,b,c\in\rr
+\right\}=\mathrm{Col}(A)
+\end{align*}
+ראשית, נדרג את
+$A$
+ונקבל לאחר דירוג קנוני את המטריצה
+$$\begin{pmatrix}
+    1&0&-1\\
+    0&1&0\\
+    0&0&0\\
+\end{pmatrix}$$
+לכן בסיס למרחב העמודות של
+$A$
+יהיה הקבוצה המורכבת משתי העמודות הראשונות שלה, כלומר
+$$B_{W}=\left\{
+\begin{pmatrix}
+    1\\-1\\-2\\
+\end{pmatrix},
+\begin{pmatrix}
+    2\\1\\8\\
+\end{pmatrix}
+\right\}$$
+ובנוסף
+$\dim(W)=2$.
+%%%%
+    \item 
+כבר דירגנו את
+$A$
+וקיבלנו בסוף כי
+$x_3=t$
+משתנה חפשי יחיד ואז
+$x_1=x_3=t, \, x_2=0$,
+ולכן נקבל כי מרחב הפתרונות של הממ״ל ההומוגנית
+$AX=0$
+יהיה
+$$U=N(A)=\left\{
+\begin{pmatrix}
+    t\\0\\t\\
+\end{pmatrix}: t\in\rr
+\right\}=\mathrm{span}
+\begin{pmatrix}
+    1\\0\\1\\
+\end{pmatrix}$$
+לכן
+$\dim(U)=1$
+ובסיס של 
+$U$
+נתון על ידי
+$$.B_U=\left\{
+\begin{pmatrix}
+    1\\0\\1\\
+\end{pmatrix}
+\right\}$$
+    \item 
+כדי למצוא בסיס של
+$U+W$
+ראשית ניזכר כי
+$$U+W=\mathrm{Span}(B_U)+\mathrm{Span}(B_W)=\mathrm{Span}(B_U\cup  B_W)$$
+לכן
+$U+W$
+נפרש על ידי שלושת הוקטורים שמצאנו בסעיפים (א),(ב), ונבדוק האם הם מהווים בסיס: נשים אותם בשורות ונדרג
+$$\begin{pmatrix}
+    1&0&1\\
+    1&-1&-2\\
+    2&1&8\\
+\end{pmatrix}\longrightarrow 
+\begin{pmatrix}
+    1&0&1\\
+    0&-1&-3\\
+    0&0&3\\
+\end{pmatrix}$$
+לא הגענו לדירוג קנוני אבל ניתן לראות כי לא תהיה שורת אפסים, כלומר שלושת הוקטורים ששמנו בשורות הם בת״ל. לסיכום, מצאנו בסיס של
+$U+W$
+והוא
+$$B_{U+W}=\left\{
+\begin{pmatrix}
+    1\\0\\1\\
+\end{pmatrix},
+\begin{pmatrix}
+    1\\-1\\-2\\
+\end{pmatrix},
+\begin{pmatrix}
+    2\\1\\8\\
+\end{pmatrix}\right\}$$
+בנוסף
+$\dim(U+W)=3$,
+ובעזרת משפט המימדים נסיק כי
+$$\dim(U\cap W)=\dim(U)+\dim(W)-\dim(U+W)=2+1-3=0$$
+לכן
+$U\cap w=\{0\}$
+ובסיס יהיה
+$B_{U\cap W}=\emptyset$.
+    %%%
+    \item 
+    ללא חישובים כלל: כבר מצאנו כי
+    המימד של מרחב העמודות הוא
+    $2$,
+    והרי המימד של מרחב השורות הוא שווה לו ולכן 
+    $2$
+    גם כן. חיתוך של שני תתי-מרחבים ממימד
+    $2$
+    ב-$\rr^3$
+    יהיה ממימד לפחות
+    $1$, ולכן יכיל וקטור השונה מוקטור האפס. ניתן לראות זאת בעזרת משפט המימדים
+    $$\dim(Row(A) \cap Col(A))=2+2-\dim(Row(A)+Col(A))=4-\dim(..)$$
+והרי המימד האחרון הוא לכל היותר
+$3$
+אז המימד של החיתוך הוא לפחות
+$1$.
+\end{enumerate}
+
+\pagebreak
+
+    \forthQ
+    \noindent\rule{\textwidth-30pt}{0.4pt}
+\underline{פיתרון:}
+\begin{enumerate}
+    \item 
+נרצה להראות כי
+$v_1,v_2,v_3$
+בלתי תלויים לינארית. לשם כך נניח כי קיימים סקלרים
+$\alpha_1,\alpha_2,\alpha_3\in\rr$
+עבורם מתקיים
+$$\alpha_1 v_1+\alpha_2 v_2+\alpha_3 v_3=0$$
+ואז נראה כי בהכרח
+$\alpha_1=\alpha_2=\alpha_3=0$.
+נפעיל על שני האגפים את ההעתקה הלינארית הנתונה
+$T$
+ונקבל
+$$T(\alpha_1 v_1+\alpha_2 v_2+\alpha_3 v_3)=T(0)$$
+נשתמש בלינאריות של ההעתקה ובכך ש-$T(0)=0$,
+אז
+$$\alpha_1 \cdot T(v_1)+\alpha_2\cdot T(v_2)+\alpha_3\cdot T(v_3)=0$$
+אך נתון כי
+$T(v_1),T(v_2),T(v_3)$
+בלתי תלויים לינארית ולכן הצירוף הלינארי היחיד שלהם שמתאפס הוא הטריוויאלי, כלומר נסיק שבהכרח
+$$\alpha_1=\alpha_2=\alpha_3=0$$
+כמבוקש.
+
+\item 
+נתון כי
+$\lambda$
+הוא ערך עצמי של
+$A$,
+לכן
+קיים וקטור
+$v\neq 0$
+עבורו מתקיים
+$Av=\lambda v$.
+נתבונן בנתון
+$A^2=A$
+ונכפיל את שני האגפים בוקטור 
+$v$
+מימין:
+$$\lambda^2 v=\lambda(\lambda v)=A(\lambda v)=A^2v=Av=\lambda v$$
+נעביר אגף
+$$(\lambda^2-\lambda)v=0$$
+ובגלל ש-$v\neq 0$
+אז בהכרח
+$\lambda^2-\lambda=0$,
+כלומר
+$\lambda=0$
+או
+$\lambda=1$
+כמבוקש.
+\end{enumerate}
+ 
+\end{enumerate}
+
+\end{document}
+    \pagebreak 
+    
+    עמוד נוסף לכתיבת המשך פיתרונות
+    
+    \pagebreak
+    עמוד נוסף לכתיבת המשך פיתרונות
+
+ \pagebreak
+
+ % --- דף הנוסחאות ---
+
+\section*{דף הנוסחאות}
+
+\begin{enumerate}
+\item $M_{m\times n}(F)$ זו קבוצת המטריצות בגודל $n\times m$
+($m$ שורות, $n$ עמודות)
+עם רכיבים מ-$F$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item לכל מטריצה $A$, נסמן על ידי $(A)_{i,j}$ את האיבר של $A$ הנמצא בשורה ה-$i$ ובעמודה ה-$j$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item פיתוח דטרמיננטה של $A\in M_{n\times n}(F)$ לפי השורה ה-$i$ או לפי העמודה ה-$j$:
+\[
+\det(A)=\sum_{i=1}^{n}(-1)^{i+j}a_{ij}\det\!\big(M_{ij}(A)\big)
+=\sum_{j=1}^{n}(-1)^{i+j}a_{ij}\det\!\big(M_{ij}(A)\big)
+\]
+כאן $M_{ij}(A)$ זה המינור ה-$i,j$ של המטריצה $A$.
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item אם $T:V\to W$ העתקה לינארית, אם $B=\{v_1,\ldots,v_n\}$ בסיס סדור של $V$ ואם $C$ בסיס סדור של $W$,
+אז המטריצה המייצגת של $T$ ביחס לבסיסים $B$ ו-$C$ מוגדרת על ידי
+\[
+[T]^B_C=
+\begin{pmatrix}
+\vline & & \vline\\
+[T(v_1)]_C & \cdots & [T(v_n)]_C\\
+\vline & & \vline
+\end{pmatrix}.
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item לכל $u=(a_1,\ldots,a_n),\; w=(b_1,\ldots,b_n)\in\mathbb{R}^n$
+
+נסמן את המכפלה הפנימית הסטנדרטית ב-$\mathbb{R}^n$ (המכפלה הסקלרית):
+\[
+ u\cdot w=a_1\cdot b_1+\cdots+a_n\cdot b_n.
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+% --- דף הנוסחאות ---
+
+
+\item תהליך גראם-שמיט (גרסה א):
+אם $W$ תת-מרחב של $\rr^n$, ואם $\{v_1,\ldots,v_m\}$ בסיס של $W$
+
+אז $\{w_1,\ldots,w_m\}$ בסיס אורתוגונלי של $W$ כאשר
+\[
+w_1=v_1,\qquad
+w_k=v_k-\sum_{i=1}^{k-1}\frac{ v_k\cdot w_i}{ w_i\cdot w_i}\,w_i
+\quad (k=2,\ldots,m).
+\]
+\item תהליך גראם-שמיט (גרסה ב):
+בהנתן סדרה בת"ל
+$\{v_1,\ldots,v_k\}\subseteq \rr^n$, נבנה סדרה אורתונורמלית באופן הבא:
+\[
+w_1=\frac{v_1}{\|v_1\|},\qquad
+w_i'=v_i-\sum_{l=1}^{i-1} (v_i\cdot w_l)\,w_l,\qquad w_i = \frac{w_i'}{\|w_i'\|}
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item השורשים של המשוואה הריבועית
+$
+0=c+bx+ax^2,\qquad a\ne 0,
+$
+נתונים על ידי
+\[
+x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+\]
+
+\noindent\rule{\textwidth-30pt}{0.4pt}
+
+\item מטריצה $A\in M_{n\times n}(\ff)$ דומה למטריצה $B\in M_{n\times n}(\ff)$ 
+
+אם
+קיימת 
+מטריצה הפיכה
+$P\in M_{n\times n}(\ff)$ כך ש-
+$A=PBP^{-1}$.
+\end{enumerate}
+
+\end{document}
