@@ -44,7 +44,8 @@ One entry per exam or quiz, built while inventorying the PDFs:
   only if two genuinely different exams share a slot.
 - `yearNum`: the Gregorian year in which the academic year ends (תשפ״א = 2020/21 → 2021). `year` is the
   Hebrew year with gershayim (״).
-- `moed`: one of `א`, `ב`, `ג`, `מיוחד`, `בוחן` (quiz), `מבחן לדוגמה` (sample exam).
+- `moed`: one of `א`, `ב`, `ג`, `מיוחד`, `בוחן` (quiz), `מבחן לדוגמה` (sample exam), `בוחן לדוגמה`
+  (sample quiz; listed with the quizzes in the app filter and the booklet).
 
 ## data/questions/<examId>.json
 

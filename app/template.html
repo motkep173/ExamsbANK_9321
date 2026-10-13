@@ -406,6 +406,7 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width:
         <option value="ג">מועד ג׳</option>
         <option value="מיוחד">מועד מיוחד</option>
         <option value="מבחן לדוגמה">מבחן לדוגמה</option>
+        <option value="בוחן לדוגמה">בוחן לדוגמה</option>
       </select>
     </div>
     </div>
@@ -511,7 +512,7 @@ function examLabel(ex) {
   const parts = [ex.year, "סמסטר " + ex.semester + "׳"];
   if (ex.moed === "בוחן") parts.push("בוחן");
   else if (ex.moed === "מיוחד") parts.push("מועד מיוחד");
-  else if (ex.moed === "מבחן לדוגמה") parts.push("מבחן לדוגמה");
+  else if (ex.moed === "מבחן לדוגמה" || ex.moed === "בוחן לדוגמה") parts.push(ex.moed);
   else parts.push("מועד " + ex.moed + "׳");
   return parts.join(" · ");
 }
@@ -519,7 +520,7 @@ function examLabel(ex) {
 // Order: syllabus order of topic/sub, then newest exam first, then question number.
 const subOrder = {};
 TOPICS.forEach((t, i) => t.subs.forEach((s, j) => { subOrder[t.name + "|" + s] = i * 100 + j; }));
-const examRank = e => e.yearNum * 100 + (e.semester === "ב" ? 50 : 0) + ({ "בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0 }[e.moed] || 0);
+const examRank = e => e.yearNum * 100 + (e.semester === "ב" ? 50 : 0) + ({ "בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0, "בוחן לדוגמה": 0 }[e.moed] || 0);
 QUESTIONS.sort((a, b) =>
   (subOrder[a.topic + "|" + a.sub] - subOrder[b.topic + "|" + b.sub]) ||
   (examRank(EXAMS[b.examId]) - examRank(EXAMS[a.examId])) ||
@@ -549,7 +550,8 @@ yearSel.append(option("", "כל השנים"), ...[...new Set(years)].sort((a, b)
 function examOk(id) {
   const e = EXAMS[id], k = kindSel.value;
   return (!yearSel.value || e.yearNum === +yearSel.value) && (!semSel.value || e.semester === semSel.value) &&
-    (!k || (k === "exam" ? e.moed !== "בוחן" : e.moed === k));
+    // "בחנים בלבד" includes sample quizzes; "מבחנים בלבד" excludes them.
+    (!k || (k === "exam" ? !e.moed.startsWith("בוחן") : k === "בוחן" ? e.moed.startsWith("בוחן") : e.moed === k));
 }
 // The appearance that matches the exam filters, or undefined.
 const matchOf = q => appearances(q).find(a => examOk(a.examId));
@@ -571,7 +573,7 @@ function renderMap() {
   tip.append(toFilters, ".");
   view.push(tip);
   // Quick links to the latest exams (not quizzes): each one sets year, semester and sitting.
-  const recent = DATA.exams.filter(e => e.moed !== "בוחן" && e.moed !== "מבחן לדוגמה")
+  const recent = DATA.exams.filter(e => !e.moed.startsWith("בוחן") && e.moed !== "מבחן לדוגמה")
     .sort((x, y) => examRank(y) - examRank(x)).slice(0, 4);
   if (recent.length) {
     const row = el("div", "recent", "<span>מבחנים אחרונים:</span>");

@@ -19,12 +19,12 @@ from build import load_course  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
-MOED_RANK = {"בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0}
+MOED_RANK = {"בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0, "בוחן לדוגמה": 0}
 
 
 def exam_label(ex):
     m = ex["moed"]
-    sit = {"בוחן": "בוחן", "מיוחד": "מועד מיוחד", "מבחן לדוגמה": "מבחן לדוגמה"}.get(m, f"מועד {m}׳")
+    sit = {"בוחן": "בוחן", "מיוחד": "מועד מיוחד", "מבחן לדוגמה": "מבחן לדוגמה", "בוחן לדוגמה": "בוחן לדוגמה"}.get(m, f"מועד {m}׳")
     return f"{ex['year']} · סמסטר {ex['semester']}׳ · {sit}"
 
 

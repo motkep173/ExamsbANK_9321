@@ -14,7 +14,7 @@ Before applying, check that no remaining part of a dropped question's exam refer
 import collections, json, os, re, sys
 
 QDIR = os.path.join("data", "questions")
-MOED_RANK = {"בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0}
+MOED_RANK = {"בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0, "בוחן לדוגמה": 0}
 norm = lambda s: re.sub(r"\s+", "", s or "")
 
 

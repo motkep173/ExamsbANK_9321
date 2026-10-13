@@ -16,7 +16,7 @@ EXAM_KEYS = {"examId", "year", "yearNum", "semester", "moed", "version", "date",
 Q_KEYS = {"id", "number", "points", "type", "text", "options", "correct", "topic", "sub", "solution",
           "image", "notes", "alsoIn", "hint", "offSyllabus"}
 SOL_KEYS = {"official", "steps", "answer", "reviewed"}
-MOEDS = {"א", "ב", "ג", "מיוחד", "בוחן", "מבחן לדוגמה"}
+MOEDS = {"א", "ב", "ג", "מיוחד", "בוחן", "מבחן לדוגמה", "בוחן לדוגמה"}
 SOL_SOURCES = {"official", "partial", "none"}
 
 

@@ -17,13 +17,13 @@ from build import load_course, logo_data_uri  # noqa: E402
 COURSE = load_course()
 TITLE = COURSE["bookletTitle"]
 LETTERS = "אבגדהוזחטי"
-MOED_RANK = {"בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0}
+MOED_RANK = {"בוחן": 1, "א": 2, "ב": 3, "ג": 4, "מיוחד": 5, "מבחן לדוגמה": 0, "בוחן לדוגמה": 0}
 
 
 def exam_label(ex):
     parts = [ex["year"], f"סמסטר {ex['semester']}׳"]
     m = ex["moed"]
-    parts.append({"בוחן": "בוחן", "מיוחד": "מועד מיוחד", "מבחן לדוגמה": "מבחן לדוגמה"}.get(m, f"מועד {m}׳"))
+    parts.append({"בוחן": "בוחן", "מיוחד": "מועד מיוחד", "מבחן לדוגמה": "מבחן לדוגמה", "בוחן לדוגמה": "בוחן לדוגמה"}.get(m, f"מועד {m}׳"))
     return " · ".join(parts)
 
 
@@ -237,8 +237,8 @@ def main():
     work = os.path.join(ROOT, "tools", ".booklet")
     os.makedirs(work, exist_ok=True)
     order, by_exam = load()
-    quizzes = [e for e in order if e["moed"] == "בוחן"]
-    tests = [e for e in order if e["moed"] != "בוחן"]
+    quizzes = [e for e in order if e["moed"].startswith("בוחן")]  # sample quizzes go with the quizzes
+    tests = [e for e in order if not e["moed"].startswith("בוחן")]
     n_q = sum(len(v) for v in by_exam.values())
     margin = {"top": "18mm", "bottom": "20mm", "left": "16mm", "right": "16mm"}
 
