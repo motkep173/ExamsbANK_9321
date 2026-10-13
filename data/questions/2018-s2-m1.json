@@ -1,0 +1,269 @@
+{
+ "examId": "2018-s2-m1",
+ "year": "תשע״ח",
+ "yearNum": 2018,
+ "semester": "ב",
+ "moed": "א",
+ "date": "2018-07-10",
+ "sourceFiles": [
+  "מבחנים/תשעח/מועד א סמסטר ב.pdf"
+ ],
+ "solutionSource": "none",
+ "issues": [
+  "בטופס: יש לענות על 5 מתוך 8 השאלות; כל שאלה 20 נקודות. כל 8 השאלות תומללו.",
+  "אין קובץ פתרון של צוות הקורס; כל הפתרונות נכתבו באופן עצמאי ואומתו ב־sympy."
+ ],
+ "questions": [
+  {
+   "id": "2018-s2-m1-q1",
+   "number": "1",
+   "points": 20,
+   "type": "open",
+   "text": "יהי \\(V\\) מרחב וקטורי מעל \\(\\mathbb{C}\\) ויהיו \\(\\vec{v_1}\\) ו־\\(\\vec{v_2}\\) שני וקטורים בלתי־תלויים ב־\\(V\\). הוכיחו או הפריכו את השוויון הבא:\\[\\mathrm{Span}(\\vec{v_1},\\vec{v_2})=\\mathrm{Span}\\big((1+2i)\\,\\vec{v_1}+(3-i)\\vec{v_2},\\ (5i)\\,\\vec{v_1}+(7+i)\\vec{v_2}\\big)\\]",
+   "topic": "מרחבים וקטוריים",
+   "sub": "צירופים לינאריים ופרישה",
+   "hint": "כתבו את שני הווקטורים החדשים כצירופים של \\(\\vec{v_1},\\vec{v_2}\\) ובדקו את מטריצת המקדמים שלהם.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "נסמן \\(\\vec{w_1}=(1+2i)\\vec{v_1}+(3-i)\\vec{v_2}\\), \\(\\vec{w_2}=5i\\,\\vec{v_1}+(7+i)\\vec{v_2}\\). מכיוון ש־\\(\\vec{v_1},\\vec{v_2}\\) בת״ל, השוויון מתקיים אם״ם \\(\\vec{w_1},\\vec{w_2}\\) בת״ל, כלומר אם״ם מטריצת המקדמים \\(\\begin{pmatrix}1+2i&5i\\\\3-i&7+i\\end{pmatrix}\\) הפיכה.",
+     "\\(\\det=(1+2i)(7+i)-5i(3-i)=(5+15i)-(5+15i)=0\\).",
+     "ואכן \\(\\frac{5i}{1+2i}=2+i\\) ו־\\((3-i)(2+i)=7+i\\), ולכן \\(\\vec{w_2}=(2+i)\\vec{w_1}\\).",
+     "לכן \\(\\dim\\mathrm{Span}(\\vec{w_1},\\vec{w_2})\\le1\\lt2=\\dim\\mathrm{Span}(\\vec{v_1},\\vec{v_2})\\), והשוויון אינו מתקיים."
+    ],
+    "answer": "השוויון אינו נכון: \\(\\vec{w_2}=(2+i)\\vec{w_1}\\), ולכן הפרישה של \\(\\vec{w_1},\\vec{w_2}\\) חד־ממדית."
+   }
+  },
+  {
+   "id": "2018-s2-m1-q2a",
+   "number": "2א",
+   "points": 10,
+   "type": "open",
+   "text": "תהי \\(A\\) מטריצה ריבועית מסדר \\(n\\times n\\) מעל השדה \\(F\\).<br>הראו כי \\(\\mathrm{rank}\\,A\\lt n\\Leftrightarrow0\\) ערך עצמי של \\(A\\).",
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "ערכים ווקטורים עצמיים ופולינום אופייני",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(\\mathrm{rank}\\,A\\lt n\\) אם״ם \\(\\dim\\ker A=n-\\mathrm{rank}\\,A\\gt0\\) (משפט הדרגה).",
+     "כלומר אם״ם קיים \\(\\vec{x}\\ne\\vec{0}\\) עם \\(A\\vec{x}=\\vec{0}=0\\cdot\\vec{x}\\).",
+     "וזו בדיוק ההגדרה לכך ש־\\(0\\) ערך עצמי של \\(A\\) (עם וקטור עצמי \\(\\vec{x}\\))."
+    ],
+    "answer": "\\(\\mathrm{rank}\\,A\\lt n\\Leftrightarrow\\ker A\\ne\\{\\vec0\\}\\Leftrightarrow\\) קיים \\(\\vec x\\ne\\vec0\\) עם \\(A\\vec x=0\\vec x\\)."
+   }
+  },
+  {
+   "id": "2018-s2-m1-q2b",
+   "number": "2ב",
+   "points": 10,
+   "type": "open",
+   "text": "תהי \\(A\\) מטריצה ריבועית מסדר \\(n\\times n\\) מעל השדה \\(F\\).<br>נניח ש־\\(A\\) הפיכה ויהי \\(\\lambda\\in F\\) ערך עצמי של \\(A\\). הראו כי \\(\\lambda^{-1}\\) ערך עצמי של \\(A^{-1}\\).",
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "ערכים ווקטורים עצמיים ופולינום אופייני",
+   "solution": {
+    "official": false,
+    "steps": [
+     "יהי \\(\\vec v\\ne\\vec0\\) עם \\(A\\vec v=\\lambda\\vec v\\).",
+     "\\(\\lambda\\ne0\\): אחרת \\(A\\vec v=\\vec0\\) עם \\(\\vec v\\ne\\vec0\\), בסתירה להפיכות \\(A\\). לכן \\(\\lambda^{-1}\\) מוגדר.",
+     "נכפיל ב־\\(A^{-1}\\): \\(\\vec v=\\lambda A^{-1}\\vec v\\), ולכן \\(A^{-1}\\vec v=\\lambda^{-1}\\vec v\\).",
+     "כיוון ש־\\(\\vec v\\ne\\vec0\\), \\(\\lambda^{-1}\\) ערך עצמי של \\(A^{-1}\\) (עם אותו וקטור עצמי)."
+    ],
+    "answer": "\\(A^{-1}\\vec v=\\lambda^{-1}\\vec v\\) לכל וקטור עצמי \\(\\vec v\\) של \\(A\\) המתאים ל־\\(\\lambda\\)."
+   }
+  },
+  {
+   "id": "2018-s2-m1-q3a",
+   "number": "3א",
+   "points": 10,
+   "type": "open",
+   "text": "יהי \\(n\\ge2\\) ותהי \\(A\\) מטריצה ריבועית מסדר \\(n\\times n\\) מעל השדה \\(F\\) כך ש־\\(\\det A=c\\ne0\\). חשבו את \\(\\det(\\mathrm{adj}\\,A)\\).",
+   "topic": "דטרמיננטות",
+   "sub": "כלל קרמר ומטריצה מצורפת",
+   "solution": {
+    "official": false,
+    "steps": [
+     "ידוע ש־\\(A\\cdot\\mathrm{adj}\\,A=(\\det A)I_n=cI_n\\).",
+     "ניקח דטרמיננטה: \\(\\det A\\cdot\\det(\\mathrm{adj}\\,A)=\\det(cI_n)=c^n\\).",
+     "מכיוון ש־\\(\\det A=c\\ne0\\): \\(\\det(\\mathrm{adj}\\,A)=c^n/c=c^{n-1}\\)."
+    ],
+    "answer": "\\(\\det(\\mathrm{adj}\\,A)=c^{n-1}\\)"
+   }
+  },
+  {
+   "id": "2018-s2-m1-q3b",
+   "number": "3ב",
+   "points": 10,
+   "type": "open",
+   "text": "חשבו את הדטרמיננטה \\[\\begin{vmatrix}235&490&590\\\\78&163&263\\\\156&326&426\\end{vmatrix}.\\]",
+   "topic": "דטרמיננטות",
+   "sub": "חישוב דטרמיננטות",
+   "hint": "חפשו קשר פשוט בין שתי שורות לפני שמפתחים.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(R_3\\to R_3-2R_2\\) (לא משנה את הדטרמיננטה): השורה השלישית הופכת ל־\\((0,\\ 0,\\ -100)\\).",
+     "פיתוח לפי השורה השלישית: \\(D=-100\\cdot\\begin{vmatrix}235&490\\\\78&163\\end{vmatrix}\\).",
+     "\\(235\\cdot163-490\\cdot78=38305-38220=85\\).",
+     "\\(D=-100\\cdot85=-8500\\)."
+    ],
+    "answer": "\\(-8500\\)"
+   }
+  },
+  {
+   "id": "2018-s2-m1-q4",
+   "number": "4",
+   "points": 20,
+   "type": "open",
+   "text": "תהי \\(A=\\begin{pmatrix}2+i&1+i&0\\\\0&1-i&5i\\\\0&0&3+i\\end{pmatrix}\\). חשבו את \\(A^{-1}\\).",
+   "topic": "מטריצות",
+   "sub": "מטריצה הפיכה ומציאת ההופכית",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(A\\) משולשית עליונה עם אלכסון שונה מאפס, ולכן הפיכה ו־\\(A^{-1}\\) משולשית עליונה.",
+     "איברי האלכסון: \\(\\frac1{2+i}=\\frac{2-i}5\\), \\(\\frac1{1-i}=\\frac{1+i}2\\), \\(\\frac1{3+i}=\\frac{3-i}{10}\\).",
+     "דירוג \\([A\\,|\\,I]\\) (או פתרון \\(AX=I\\) מלמטה למעלה) נותן: \\((A^{-1})_{23}=-\\frac{5i}{(1-i)(3+i)}=\\frac12-i\\), \\((A^{-1})_{12}=-\\frac{1+i}{(2+i)(1-i)}=-\\frac15-\\frac25i\\).",
+     "\\((A^{-1})_{13}=-\\frac{(1+i)(A^{-1})_{23}}{2+i}=-\\frac12+\\frac12i\\).",
+     "\\[A^{-1}=\\begin{pmatrix}\\frac25-\\frac15i&-\\frac15-\\frac25i&-\\frac12+\\frac12i\\\\0&\\frac12+\\frac12i&\\frac12-i\\\\0&0&\\frac3{10}-\\frac1{10}i\\end{pmatrix}\\]",
+     "בדיקה: \\(AA^{-1}=I\\)."
+    ],
+    "answer": "\\(A^{-1}=\\begin{pmatrix}\\frac{2-i}5&\\frac{-1-2i}5&\\frac{-1+i}2\\\\0&\\frac{1+i}2&\\frac{1-2i}2\\\\0&0&\\frac{3-i}{10}\\end{pmatrix}\\)"
+   }
+  },
+  {
+   "id": "2018-s2-m1-q5a",
+   "number": "5א",
+   "points": 8,
+   "type": "open",
+   "text": "יהי \\(n\\) מספר שלם חיובי ויהי \\(V=M_{nn}(\\mathbb{R})\\), המרחב הווקטורי של כל המטריצות מסדר \\(n\\times n\\) מעל \\(\\mathbb{R}\\). נבחר במטריצה \\(A\\in M_{nn}(\\mathbb{R})\\) ונגדיר \\(W\\subseteq M_{nn}(\\mathbb{R})\\) בדרך הבאה: \\(W\\) היא קבוצת המטריצות \\(X\\in M_{nn}(\\mathbb{R})\\) הסימטריות כך ש־\\(AX=XA\\).<br>הראו ש־\\(W\\) מהווה תת־<b>מרחב</b> של \\(M_{nn}(\\mathbb{R})\\).",
+   "topic": "מרחבים וקטוריים",
+   "sub": "מרחבים ותתי־מרחבים",
+   "notes": "בטופס הקבוצה W נכתבה בסימון קבוצה (התנאי: X סימטרית ו־AX=XA); כאן היא מנוסחת במילים.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(0_{nn}\\in W\\): היא סימטרית ו־\\(A\\cdot0=0=0\\cdot A\\).",
+     "אם \\(X,Y\\in W\\): \\((X+Y)^t=X^t+Y^t=X+Y\\) ו־\\(A(X+Y)=AX+AY=XA+YA=(X+Y)A\\), לכן \\(X+Y\\in W\\).",
+     "אם \\(X\\in W\\), \\(\\alpha\\in\\mathbb{R}\\): \\((\\alpha X)^t=\\alpha X\\) ו־\\(A(\\alpha X)=\\alpha AX=\\alpha XA=(\\alpha X)A\\), לכן \\(\\alpha X\\in W\\).",
+     "לכן \\(W\\) תת־מרחב."
+    ],
+    "answer": "\\(W\\) מכיל את \\(0\\) וסגור לחיבור ולכפל בסקלר, ולכן תת־מרחב."
+   }
+  },
+  {
+   "id": "2018-s2-m1-q5b",
+   "number": "5ב",
+   "points": 12,
+   "type": "open",
+   "text": "יהי \\(n\\) מספר שלם חיובי ויהי \\(V=M_{nn}(\\mathbb{R})\\), המרחב הווקטורי של כל המטריצות מסדר \\(n\\times n\\) מעל \\(\\mathbb{R}\\). נבחר במטריצה \\(A\\in M_{nn}(\\mathbb{R})\\) ונגדיר \\(W\\subseteq M_{nn}(\\mathbb{R})\\) בדרך הבאה: \\(W\\) היא קבוצת המטריצות \\(X\\in M_{nn}(\\mathbb{R})\\) הסימטריות כך ש־\\(AX=XA\\).<br>יהי \\(n=2\\) ותהי \\(A=\\begin{pmatrix}4&-1\\\\-1&2\\end{pmatrix}\\). מצאו בסיס ומימד עבור \\(W\\).",
+   "topic": "מרחבים וקטוריים",
+   "sub": "בסיס ומימד",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(X\\) סימטרית: \\(X=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}\\).",
+     "\\(AX=\\begin{pmatrix}4a-b&4b-c\\\\-a+2b&-b+2c\\end{pmatrix}\\), \\(XA=\\begin{pmatrix}4a-b&-a+2b\\\\4b-c&-b+2c\\end{pmatrix}\\).",
+     "השוויון \\(AX=XA\\) שקול למשוואה היחידה \\(4b-c=-a+2b\\), כלומר \\(a=c-2b\\).",
+     "לכן \\(X=b\\begin{pmatrix}-2&1\\\\1&0\\end{pmatrix}+c\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}\\), ושתי המטריצות בת״ל (אינן פרופורציונליות)."
+    ],
+    "answer": "בסיס: \\(\\left\\{\\begin{pmatrix}-2&1\\\\1&0\\end{pmatrix},\\ I_2\\right\\}\\), \\(\\dim W=2\\)."
+   }
+  },
+  {
+   "id": "2018-s2-m1-q6a",
+   "number": "6א",
+   "points": 4,
+   "type": "open",
+   "text": "נגדיר \\(T:\\mathbb{R}_{\\le3}[x]\\to M_{22}(\\mathbb{R})\\) על־ידי \\(T(p)=\\begin{pmatrix}p(0)&p(1)\\\\p'(0)&p'(1)\\end{pmatrix}\\) לכל פולינום \\(p\\in\\mathbb{R}_{\\le3}[x]\\), כאשר \\(p'(x)\\) היא הנגזרת של \\(p(x)\\).<br>הראו כי \\(T\\) טרנספורמציה <b>לינארית</b>.",
+   "topic": "העתקות לינאריות",
+   "sub": "הגדרה ובדיקת לינאריות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "לכל \\(p,q\\) ו־\\(\\alpha,\\beta\\in\\mathbb{R}\\): \\((\\alpha p+\\beta q)(t)=\\alpha p(t)+\\beta q(t)\\) ו־\\((\\alpha p+\\beta q)'=\\alpha p'+\\beta q'\\) (לינאריות הגזירה).",
+     "לכן כל רכיב של \\(T(\\alpha p+\\beta q)\\) שווה לרכיב המתאים של \\(\\alpha T(p)+\\beta T(q)\\).",
+     "כלומר \\(T(\\alpha p+\\beta q)=\\alpha T(p)+\\beta T(q)\\)."
+    ],
+    "answer": "\\(T\\) לינארית כי הצבה בנקודה וגזירה הן פעולות לינאריות."
+   }
+  },
+  {
+   "id": "2018-s2-m1-q6b",
+   "number": "6ב",
+   "points": 8,
+   "type": "open",
+   "text": "נגדיר \\(T:\\mathbb{R}_{\\le3}[x]\\to M_{22}(\\mathbb{R})\\) על־ידי \\(T(p)=\\begin{pmatrix}p(0)&p(1)\\\\p'(0)&p'(1)\\end{pmatrix}\\) לכל פולינום \\(p\\in\\mathbb{R}_{\\le3}[x]\\), כאשר \\(p'(x)\\) היא הנגזרת של \\(p(x)\\).<br>הראו כי \\(T\\) <b>על</b> \\(M_{22}(\\mathbb{R})\\).",
+   "topic": "העתקות לינאריות",
+   "sub": "גרעין ותמונה ומשפט המימד",
+   "hint": "השוו מימדים והשתמשו במשפט המימד.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(\\dim\\mathbb{R}_{\\le3}[x]=4=\\dim M_{22}(\\mathbb{R})\\), ולכן לפי משפט המימד מספיק להראות ש־\\(\\ker T=\\{0\\}\\).",
+     "אם \\(T(p)=0\\) אז \\(p(0)=p'(0)=0\\) ו־\\(p(1)=p'(1)=0\\): \\(0\\) ו־\\(1\\) שורשים כפולים של \\(p\\).",
+     "לכן \\(x^2(x-1)^2\\) מחלק את \\(p\\); מכיוון ש־\\(\\deg p\\le3\\lt4\\), בהכרח \\(p=0\\).",
+     "\\(\\dim\\mathrm{Im}\\,T=4-\\dim\\ker T=4\\), ולכן \\(\\mathrm{Im}\\,T=M_{22}(\\mathbb{R})\\)."
+    ],
+    "answer": "\\(\\ker T=\\{0\\}\\) ולכן \\(\\dim\\mathrm{Im}\\,T=4\\), כלומר \\(T\\) על."
+   }
+  },
+  {
+   "id": "2018-s2-m1-q6c",
+   "number": "6ג",
+   "points": 8,
+   "type": "open",
+   "text": "נגדיר \\(T:\\mathbb{R}_{\\le3}[x]\\to M_{22}(\\mathbb{R})\\) על־ידי \\(T(p)=\\begin{pmatrix}p(0)&p(1)\\\\p'(0)&p'(1)\\end{pmatrix}\\) לכל פולינום \\(p\\in\\mathbb{R}_{\\le3}[x]\\), כאשר \\(p'(x)\\) היא הנגזרת של \\(p(x)\\).<br>חשבו את המטריצה המייצגת \\([T]_{B'}^{B}\\), כאשר \\(B=\\langle1,\\ 2+x,\\ 1+4x+x^2,\\ x^3\\rangle\\) בסיס סדור של \\(\\mathbb{R}_{\\le3}[x]\\) ו־\\(B'=\\left\\langle\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix},\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}\\right\\rangle\\) בסיס סדור ל־\\(M_{22}(\\mathbb{R})\\).",
+   "topic": "העתקות לינאריות",
+   "sub": "מטריצה מייצגת",
+   "solution": {
+    "official": false,
+    "steps": [
+     "וקטור הקואורדינטות של \\(T(p)\\) לפי \\(B'\\) הוא \\((p(0),p(1),p'(0),p'(1))^t\\).",
+     "\\(T(1)\\to(1,1,0,0)\\), \\(T(2+x)\\to(2,3,1,1)\\).",
+     "\\(T(1+4x+x^2)\\): \\(p(0)=1,\\ p(1)=6,\\ p'=4+2x\\Rightarrow(1,6,4,6)\\).",
+     "\\(T(x^3)\\to(0,1,0,3)\\). את הווקטורים רושמים כעמודות."
+    ],
+    "answer": "\\([T]_{B'}^{B}=\\begin{pmatrix}1&2&1&0\\\\1&3&6&1\\\\0&1&4&0\\\\0&1&6&3\\end{pmatrix}\\)"
+   }
+  },
+  {
+   "id": "2018-s2-m1-q7",
+   "number": "7",
+   "points": 20,
+   "type": "open",
+   "text": "תהי \\(A=\\begin{pmatrix}-10&18\\\\-6&11\\end{pmatrix}\\). חשבו את \\(A^{50}\\).",
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "לכסון מטריצות",
+   "hint": "לכסנו את \\(A\\).",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(p_A(\\lambda)=\\lambda^2-\\mathrm{tr}A\\,\\lambda+\\det A=\\lambda^2-\\lambda-2=(\\lambda+1)(\\lambda-2)\\).",
+     "\\(\\lambda=-1\\): וקטור עצמי \\((2,1)^t\\); \\(\\lambda=2\\): וקטור עצמי \\((3,2)^t\\).",
+     "\\(P=\\begin{pmatrix}2&3\\\\1&2\\end{pmatrix}\\), \\(P^{-1}=\\begin{pmatrix}2&-3\\\\-1&2\\end{pmatrix}\\), \\(A=P\\,\\mathrm{diag}(-1,2)\\,P^{-1}\\).",
+     "\\(A^{50}=P\\,\\mathrm{diag}\\big((-1)^{50},2^{50}\\big)P^{-1}=\\begin{pmatrix}2&3\\\\1&2\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&2^{50}\\end{pmatrix}\\begin{pmatrix}2&-3\\\\-1&2\\end{pmatrix}\\)."
+    ],
+    "answer": "\\(A^{50}=\\begin{pmatrix}4-3\\cdot2^{50}&-6+6\\cdot2^{50}\\\\2-2\\cdot2^{50}&-3+4\\cdot2^{50}\\end{pmatrix}\\)"
+   }
+  },
+  {
+   "id": "2018-s2-m1-q8",
+   "number": "8",
+   "points": 20,
+   "type": "open",
+   "text": "יהי \\(V\\) מרחב מכפלה פנימית מעל \\(\\mathbb{R}\\) ויהיו \\(\\vec u,\\vec v\\in V\\). הוכיחו כי\\[\\langle\\vec u,\\vec v\\rangle=0\\Leftrightarrow\\|\\vec u\\|\\le\\|\\vec u+\\alpha\\vec v\\|\\]לכל \\(\\alpha\\in\\mathbb{R}\\). (רמז: אם \\(\\langle\\vec u,\\vec v\\rangle\\ne0\\) הראו שקיים \\(\\alpha\\in\\mathbb{R}\\) עבורו \\(\\vec u+\\alpha\\vec v\\) אורתוגונלי ל־\\(\\vec v\\).)",
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "מכפלה פנימית, נורמה ואורתוגונליות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "לכל \\(\\alpha\\): \\(\\|\\vec u+\\alpha\\vec v\\|^2=\\|\\vec u\\|^2+2\\alpha\\langle\\vec u,\\vec v\\rangle+\\alpha^2\\|\\vec v\\|^2\\).",
+     "(\\(\\Leftarrow\\)) אם \\(\\langle\\vec u,\\vec v\\rangle=0\\) אז \\(\\|\\vec u+\\alpha\\vec v\\|^2=\\|\\vec u\\|^2+\\alpha^2\\|\\vec v\\|^2\\ge\\|\\vec u\\|^2\\).",
+     "(\\(\\Rightarrow\\)) נניח בשלילה \\(\\langle\\vec u,\\vec v\\rangle\\ne0\\); אז \\(\\vec v\\ne\\vec0\\). ניקח \\(\\alpha=-\\frac{\\langle\\vec u,\\vec v\\rangle}{\\|\\vec v\\|^2}\\) (עבורו \\(\\vec u+\\alpha\\vec v\\perp\\vec v\\)).",
+     "מתקבל \\(\\|\\vec u+\\alpha\\vec v\\|^2=\\|\\vec u\\|^2-\\frac{\\langle\\vec u,\\vec v\\rangle^2}{\\|\\vec v\\|^2}\\lt\\|\\vec u\\|^2\\), בסתירה להנחה."
+    ],
+    "answer": "הוכחה בפיתוח \\(\\|\\vec u+\\alpha\\vec v\\|^2\\) ובחירת \\(\\alpha=-\\langle\\vec u,\\vec v\\rangle/\\|\\vec v\\|^2\\)."
+   }
+  }
+ ]
+}
