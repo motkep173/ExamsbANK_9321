@@ -1,0 +1,170 @@
+{
+ "examId": "2016-s2-m3",
+ "year": "תשע״ו",
+ "yearNum": 2016,
+ "semester": "ב",
+ "moed": "ג",
+ "date": "2016-09-15",
+ "sourceFiles": [
+  "מבחנים/תשעו/מועד ג סמסטר ב.pdf"
+ ],
+ "solutionSource": "none",
+ "issues": [
+  "סריקה של עמוד אחד; הפתרונות נכתבו ונבדקו ב־sympy (אין פתרון רשמי).",
+  "בשאלה 4א הטופס משתמש באות V גם לתת־המרחב; הושאר כמו בטופס."
+ ],
+ "questions": [
+  {
+   "id": "2016-s2-m3-q1a",
+   "number": "1א",
+   "points": 15,
+   "type": "open",
+   "text": "מצאו את ההצגה \\(a+bi\\), \\(a,b\\in\\mathbb{R}\\) עבור הביטוי \\(\\sqrt{1-i\\sqrt3}\\).",
+   "topic": "קבוצות וגאומטריה של וקטורים",
+   "sub": "וקטורים במישור ובמרחב",
+   "notes": "סיווג: מספרים מרוכבים.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(1-i\\sqrt3=2e^{-i\\pi/3}\\).",
+     "השורשים הריבועיים: \\(\\pm\\sqrt2\\,e^{-i\\pi/6}=\\pm\\sqrt2\\left(\\frac{\\sqrt3}{2}-\\frac i2\\right)\\).",
+     "בדיקה: \\(\\left(\\frac{\\sqrt6}{2}-\\frac{\\sqrt2}{2}i\\right)^2=\\frac64-\\frac24-2\\cdot\\frac{\\sqrt{12}}{4}i=1-\\sqrt3i\\)."
+    ],
+    "answer": "\\(\\sqrt{1-i\\sqrt3}=\\pm\\left(\\frac{\\sqrt6}{2}-\\frac{\\sqrt2}{2}i\\right)\\)"
+   }
+  },
+  {
+   "id": "2016-s2-m3-q1b",
+   "number": "1ב",
+   "points": 10,
+   "type": "open",
+   "text": "נגדיר אופרטור \\(T_A:\\mathbb{C}^3\\to\\mathbb{C}^3\\) על ידי \\(T_A(v)=A\\cdot v\\), כאשר \\[A=\\begin{bmatrix}1&2&3\\\\4&5&6\\\\0&-3&-6\\end{bmatrix}.\\] מצאו את \\(\\dim\\big(\\ker(T_A)\\cap\\operatorname{Im}(T_A)\\big)\\).",
+   "topic": "העתקות לינאריות",
+   "sub": "גרעין ותמונה ומשפט המימד",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(R_2-4R_1=(0,-3,-6)=R_3\\), ולכן הדרגה 2: \\(\\operatorname{Im}T_A=\\operatorname{Span}\\{(1,4,0),(2,5,-3)\\}\\).",
+     "\\(\\ker T_A\\): \\(y=-2z\\), \\(x=-2y-3z=z\\), כלומר \\(\\ker T_A=\\operatorname{Span}\\{(1,-2,1)\\}\\).",
+     "\\(\\det\\begin{bmatrix}1&2&1\\\\4&5&-2\\\\0&-3&1\\end{bmatrix}\\neq0\\), כלומר \\((1,-2,1)\\notin\\operatorname{Im}T_A\\).",
+     "לכן \\(\\ker T_A\\cap\\operatorname{Im}T_A=\\{0\\}\\)."
+    ],
+    "answer": "\\(\\dim(\\ker T_A\\cap\\operatorname{Im}T_A)=0\\)"
+   }
+  },
+  {
+   "id": "2016-s2-m3-q2a",
+   "number": "2א",
+   "points": 10,
+   "type": "open",
+   "text": "נגדיר אופרטור לינארי על \\(M_{2\\times2}(\\mathbb{C})\\) על ידי \\[T\\left(\\begin{bmatrix}a_{11}&a_{12}\\\\a_{21}&a_{22}\\end{bmatrix}\\right)=\\begin{bmatrix}a_{11}&a_{12}\\\\a_{21}&a_{22}\\end{bmatrix}-\\begin{bmatrix}a_{22}&a_{12}\\\\a_{21}&a_{11}\\end{bmatrix}.\\]מצאו בסיסים ל־\\(\\operatorname{Im}(T)\\), \\(\\ker(T)\\).",
+   "topic": "העתקות לינאריות",
+   "sub": "גרעין ותמונה ומשפט המימד",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(T(A)=\\begin{bmatrix}a_{11}-a_{22}&0\\\\0&a_{22}-a_{11}\\end{bmatrix}=(a_{11}-a_{22})\\begin{bmatrix}1&0\\\\0&-1\\end{bmatrix}\\).",
+     "\\(\\operatorname{Im}T=\\operatorname{Span}\\left\\{\\begin{bmatrix}1&0\\\\0&-1\\end{bmatrix}\\right\\}\\).",
+     "\\(\\ker T=\\{a_{11}=a_{22}\\}\\), בסיס: \\(\\left\\{\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix},\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix},\\begin{bmatrix}0&0\\\\1&0\\end{bmatrix}\\right\\}\\) (ובהתאם למשפט המימד \\(1+3=4\\))."
+    ],
+    "answer": "\\(\\operatorname{Im}T=\\operatorname{Span}\\{E_{11}-E_{22}\\}\\), \\(\\ker T=\\operatorname{Span}\\{I,E_{12},E_{21}\\}\\)."
+   }
+  },
+  {
+   "id": "2016-s2-m3-q2b",
+   "number": "2ב",
+   "points": 15,
+   "type": "open",
+   "text": "נגדיר אופרטור לינארי על \\(M_{2\\times2}(\\mathbb{C})\\) על ידי \\[T\\left(\\begin{bmatrix}a_{11}&a_{12}\\\\a_{21}&a_{22}\\end{bmatrix}\\right)=\\begin{bmatrix}a_{11}&a_{12}\\\\a_{21}&a_{22}\\end{bmatrix}-\\begin{bmatrix}a_{22}&a_{12}\\\\a_{21}&a_{11}\\end{bmatrix}.\\]האם \\(T\\) ניתן לכסון? אם כן, מצאו בסיס מלכסן וצורה אלכסונית של \\(T\\) בבסיס הזה.",
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "לכסון מטריצות",
+   "notes": "\\(E_{ij}\\) מסמנת את המטריצה עם 1 במקום \\((i,j)\\) ו־0 בשאר המקומות.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(\\ker T\\) (ממימד 3) הוא המרחב העצמי של \\(\\lambda=0\\).",
+     "\\(T(E_{11}-E_{22})=(1-(-1))(E_{11}-E_{22})=2(E_{11}-E_{22})\\): וקטור עצמי עם \\(\\lambda=2\\).",
+     "יש 4 וקטורים עצמיים בלתי תלויים, ולכן \\(T\\) לכסין: \\(B=\\{I,E_{12},E_{21},E_{11}-E_{22}\\}\\).",
+     "\\([T]_B=\\operatorname{diag}(0,0,0,2)\\)."
+    ],
+    "answer": "כן; \\(B=\\{I,E_{12},E_{21},E_{11}-E_{22}\\}\\), \\([T]_B=\\operatorname{diag}(0,0,0,2)\\)."
+   }
+  },
+  {
+   "id": "2016-s2-m3-q3a",
+   "number": "3א",
+   "points": 10,
+   "type": "open",
+   "text": "יהי \\(V\\subset\\mathbb{R}^4\\) תת מרחב ממימד שלוש. נניח ש־\\(V\\oplus V_1=\\mathbb{R}^4\\) וגם \\(V\\oplus V_2=\\mathbb{R}^4\\). הוכיחו/הפריכו (על ידי דוגמה נגדית): \\(\\dim(V_1\\cap V_2)\\ge1\\).",
+   "topic": "מרחבים וקטוריים",
+   "sub": "סכום וחיתוך של תתי־מרחבים",
+   "solution": {
+    "official": false,
+    "steps": [
+     "מ־\\(V\\oplus V_i=\\mathbb{R}^4\\) נובע \\(\\dim V_i=4-3=1\\).",
+     "הטענה אינה נכונה: \\(V=\\operatorname{Span}\\{e_1,e_2,e_3\\}\\), \\(V_1=\\operatorname{Span}\\{e_4\\}\\), \\(V_2=\\operatorname{Span}\\{e_1+e_4\\}\\).",
+     "\\(e_4\\notin V\\) ו־\\(e_1+e_4\\notin V\\), ולכן שני הסכומים ישרים ושווים ל־\\(\\mathbb{R}^4\\).",
+     "אבל \\(V_1\\neq V_2\\) הם ישרים שונים, ולכן \\(V_1\\cap V_2=\\{0\\}\\)."
+    ],
+    "answer": "הטענה אינה נכונה."
+   }
+  },
+  {
+   "id": "2016-s2-m3-q3b",
+   "number": "3ב",
+   "points": 15,
+   "type": "open",
+   "text": "יהי \\(V\\subset\\mathbb{R}^4\\) תת מרחב ממימד שלוש. נניח ש־\\(V\\oplus V_1=\\mathbb{R}^4\\) וגם \\(V\\oplus V_2=\\mathbb{R}^4\\). הוכיחו/הפריכו (על ידי דוגמה נגדית): \\(\\dim(V_1+V_2)\\le2\\).",
+   "topic": "מרחבים וקטוריים",
+   "sub": "סכום וחיתוך של תתי־מרחבים",
+   "solution": {
+    "official": false,
+    "steps": [
+     "הטענה נכונה.",
+     "מ־\\(V\\oplus V_i=\\mathbb{R}^4\\) נובע \\(\\dim V_i=4-\\dim V=1\\).",
+     "\\(\\dim(V_1+V_2)=\\dim V_1+\\dim V_2-\\dim(V_1\\cap V_2)\\le1+1=2\\)."
+    ],
+    "answer": "הטענה נכונה."
+   }
+  },
+  {
+   "id": "2016-s2-m3-q4a",
+   "number": "4א",
+   "points": 15,
+   "type": "open",
+   "text": "נתון מרחב וקטורי \\(\\mathbb{R}_{\\le4}[x]\\) עם מכפלה פנימית \\(\\langle p(x),q(x)\\rangle=\\int_{-1}^{1}p(x)q(x)\\,dx\\). נגדיר \\(V=\\{p(x)\\mid p'(0)=0=p''(0)\\}\\subset\\mathbb{R}_{\\le4}[x]\\). מצאו בסיס אורתונורמלי ל־\\(V\\).",
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "הטלה אורתוגונלית ותהליך גרם–שמידט",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(p=\\sum a_kx^k\\): \\(p'(0)=a_1\\), \\(p''(0)=2a_2\\). לכן \\(V=\\operatorname{Span}\\{1,x^3,x^4\\}\\).",
+     "\\(x^3\\) אי־זוגי ו־\\(1,x^4\\) זוגיים, ולכן \\(x^3\\perp1\\) ו־\\(x^3\\perp x^4\\).",
+     "\\(\\|1\\|^2=2\\Rightarrow e_1=\\frac{1}{\\sqrt2}\\); \\(\\|x^3\\|^2=\\frac27\\Rightarrow e_2=\\sqrt{\\frac72}\\,x^3\\).",
+     "\\(x^4-\\frac{\\langle x^4,1\\rangle}{\\langle1,1\\rangle}=x^4-\\frac15\\), \\(\\left\\|x^4-\\frac15\\right\\|^2=\\frac29-\\frac{4}{25}+\\frac{2}{25}=\\frac{32}{225}\\).",
+     "\\(e_3=\\frac{15}{4\\sqrt2}\\left(x^4-\\frac15\\right)=\\frac{3\\sqrt2}{8}(5x^4-1)\\)."
+    ],
+    "answer": "\\(\\left\\{\\frac{1}{\\sqrt2},\\ \\sqrt{\\tfrac72}\\,x^3,\\ \\frac{3\\sqrt2}{8}(5x^4-1)\\right\\}\\)"
+   }
+  },
+  {
+   "id": "2016-s2-m3-q4b",
+   "number": "4ב",
+   "points": 10,
+   "type": "open",
+   "text": "נתון מרחב וקטורי \\(M_{2\\times2}(\\mathbb{R})\\) עם מכפלה פנימית \\(\\langle A,B\\rangle=\\operatorname{trace}(AB^t)\\). נגדיר \\(W=\\{A\\mid\\operatorname{trace}(A)=0\\}\\subset M_{2\\times2}(\\mathbb{R})\\). מצאו בסיס ל־\\(W^\\perp\\).",
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "מכפלה פנימית, נורמה ואורתוגונליות",
+   "hint": "כתבו את התנאי \\(\\operatorname{trace}(A)=0\\) כמכפלה פנימית של \\(A\\) עם מטריצה קבועה.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(\\langle A,I\\rangle=\\operatorname{trace}(AI^t)=\\operatorname{trace}(A)\\), ולכן \\(W=\\{A\\mid\\langle A,I\\rangle=0\\}=\\operatorname{Span}\\{I\\}^\\perp\\).",
+     "\\(W^\\perp=\\left(\\operatorname{Span}\\{I\\}^\\perp\\right)^\\perp=\\operatorname{Span}\\{I\\}\\) (במרחב ממימד סופי).",
+     "בדיקת מימדים: \\(\\dim W=3\\), \\(\\dim W^\\perp=4-3=1\\)."
+    ],
+    "answer": "בסיס ל־\\(W^\\perp\\): \\(\\{I\\}\\)"
+   }
+  }
+ ]
+}
