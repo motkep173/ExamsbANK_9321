@@ -608,6 +608,44 @@
   ]
  },
  {
+  "examId": "2025-s2-m1",
+  "year": "תשפ״ה",
+  "yearNum": 2025,
+  "semester": "ב",
+  "moed": "א",
+  "date": "2025-07-28",
+  "files": [
+   "tex/Moed_A_25b_9321_.tex",
+   "tex/Moed_A_25b_9321_sol.tex"
+  ],
+  "catalogNote": "פתרון רשמי (מקור LaTeX)."
+ },
+ {
+  "examId": "2025-s2-m2",
+  "year": "תשפ״ה",
+  "yearNum": 2025,
+  "semester": "ב",
+  "moed": "ב",
+  "date": "2025-08-18",
+  "files": [
+   "tex/Moed_B_25b_9321_.tex",
+   "tex/Moed_B_25b_9321s.tex"
+  ],
+  "catalogNote": "פתרון רשמי: תשובות סופיות (מקור LaTeX)."
+ },
+ {
+  "examId": "2025-s2-m3",
+  "year": "תשפ״ה",
+  "yearNum": 2025,
+  "semester": "ב",
+  "moed": "ג",
+  "date": "2025-09-16",
+  "files": [
+   "tex/Moed_B_25C_9321_.tex"
+  ],
+  "catalogNote": "מקור LaTeX, ללא פתרון רשמי. שם הקובץ Moed_B_25C; בטופס: מועד ג׳."
+ },
+ {
   "examId": "2026-s1-m1",
   "year": "תשפ״ו",
   "yearNum": 2026,
