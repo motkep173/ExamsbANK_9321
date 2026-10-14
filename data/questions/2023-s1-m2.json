@@ -1,0 +1,423 @@
+{
+ "examId": "2023-s1-m2",
+ "year": "תשפ״ג",
+ "yearNum": 2023,
+ "semester": "א",
+ "moed": "ב",
+ "date": "2023-02-20",
+ "sourceFiles": [
+  "מבחנים/תשפג/מועד ב סמסטר א.pdf"
+ ],
+ "solutionSource": "none",
+ "issues": [
+  "אין פתרון רשמי; כל הפתרונות נכתבו ונבדקו ב־sympy (official: false).",
+  "המבחן בשני חלקים: חלק א׳ – 8 שאלות אמריקאיות (5 נק׳ כל אחת), חלק ב׳ – 4 שאלות פתוחות (20 נק׳ כל אחת, יש לבחור 3). שאלות חלק ב׳ (1)–(4) מוספרו במאגר 9–12; סעיפים (א)/(ב)/(ג) כ־א/ב/ג.",
+  "דפים 5, 7, 9, 11, 12 ריקים; דף 13 הוא דף נוסחאות ולא תומלל."
+ ],
+ "questions": [
+  {
+   "id": "2023-s1-m2-q1",
+   "number": "1",
+   "points": 5,
+   "type": "mc",
+   "text": "יהיו \\(a,b\\in\\mathbb{R}\\) ויהיו \\[v_1=\\begin{pmatrix}1\\\\-1\\\\2\\end{pmatrix},\\quad v_2=\\begin{pmatrix}3\\\\0\\\\1\\end{pmatrix},\\quad v_3=\\begin{pmatrix}a\\\\1\\\\b\\end{pmatrix}.\\] נתון כי הקבוצה \\(\\{v_1,v_2,v_3\\}\\) תלויה לינארית. בחרו את הטענה הנכונה:",
+   "options": [
+    "\\(a=3+5b\\)",
+    "\\(a=3-5b\\)",
+    "\\(a=5+3b\\)",
+    "\\(a=5-5b\\)"
+   ],
+   "correct": 2,
+   "topic": "מרחבים וקטוריים",
+   "sub": "תלות ואי־תלות לינארית",
+   "solution": {
+    "official": false,
+    "steps": [
+     "שלושה וקטורים ב־\\(\\mathbb{R}^3\\) תלויים לינארית אם״ם \\(\\det[v_1\\ v_2\\ v_3]=0\\).",
+     "\\(\\det\\begin{pmatrix}1&3&a\\\\-1&0&1\\\\2&1&b\\end{pmatrix}=-a+3b+5\\).",
+     "לכן \\(a=5+3b\\)."
+    ],
+    "answer": "תשובה ג."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q2",
+   "number": "2",
+   "points": 5,
+   "type": "mc",
+   "text": "יהי \\(V\\) מרחב וקטורי ונניח כי \\(U_1,U_2,U_3\\subseteq V\\) תתי־מרחבים. בחרו את הטענה הנכונה:",
+   "options": [
+    "אם \\(U_1\\cap U_2=U_1\\cap U_3\\) אז \\(U_2=U_3\\).",
+    "אם \\(\\dim(U_1)+\\dim(U_2)-\\dim(U_3)\\gt\\dim(V)\\) אז \\(U_1+U_2+U_3=V\\).",
+    "אם \\(\\dim(U_1+U_2+U_3)=\\dim(U_1+U_2)\\) אז \\(U_3\\subseteq U_1+U_2\\).",
+    "אם \\(U_1\\not\\subseteq U_2\\) אז \\(U_1\\cap U_2=\\{0\\}\\)."
+   ],
+   "correct": 2,
+   "topic": "מרחבים וקטוריים",
+   "sub": "סכום וחיתוך של תתי־מרחבים",
+   "solution": {
+    "official": false,
+    "steps": [
+     "ג׳: \\(U_1+U_2\\subseteq U_1+U_2+U_3\\) ושני המרחבים שווי מימד, ולכן הם שווים. מכאן \\(U_3\\subseteq U_1+U_2+U_3=U_1+U_2\\). נכון.",
+     "א׳ שגויה: \\(U_1=\\{0\\}\\) ו־\\(U_2\\ne U_3\\). ד׳ שגויה: \\(U_1=V=\\mathbb{R}^2\\), \\(U_2\\) ישר; \\(U_1\\not\\subseteq U_2\\) אבל \\(U_1\\cap U_2=U_2\\ne\\{0\\}\\).",
+     "ב׳ שגויה: \\(V=\\mathbb{R}^3\\), \\(U_1=U_2\\) מישור, \\(U_3=\\{0\\}\\): \\(2+2-0\\gt3\\) אבל \\(U_1+U_2+U_3\\) הוא המישור."
+    ],
+    "answer": "תשובה ג."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q3",
+   "number": "3",
+   "points": 5,
+   "type": "mc",
+   "text": "יהי \\(V\\) מרחב וקטורי, יהי \\(B=(v_1,v_2,v_3)\\) בסיס של \\(V\\) ויהי \\(C\\) הבסיס של \\(V\\) הנתון על ידי \\(C=(v_2,v_1+v_3,v_1-v_3)\\). נתון כי \\(v\\in V\\) מקיים \\([v]_B=\\begin{pmatrix}a\\\\b\\\\c\\end{pmatrix}\\). בחרו את הטענה הנכונה:",
+   "options": [
+    "\\([v]_C=\\begin{pmatrix}b\\\\\\frac{a-c}{2}\\\\\\frac{a+c}{2}\\end{pmatrix}\\)",
+    "\\([v]_C=\\begin{pmatrix}b\\\\\\frac{a+c}{2}\\\\\\frac{a-c}{2}\\end{pmatrix}\\)",
+    "\\([v]_C=\\begin{pmatrix}b\\\\a\\\\c\\end{pmatrix}\\)",
+    "\\([v]_C=\\begin{pmatrix}b\\\\c\\\\a\\end{pmatrix}\\)"
+   ],
+   "correct": 1,
+   "topic": "מרחבים וקטוריים",
+   "sub": "וקטור קואורדינטות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(v=av_1+bv_2+cv_3\\).",
+     "\\(v_1=\\frac12\\left[(v_1+v_3)+(v_1-v_3)\\right]\\), \\(v_3=\\frac12\\left[(v_1+v_3)-(v_1-v_3)\\right]\\).",
+     "לכן \\(v=b\\,v_2+\\frac{a+c}{2}(v_1+v_3)+\\frac{a-c}{2}(v_1-v_3)\\), כלומר \\([v]_C=\\left(b,\\frac{a+c}{2},\\frac{a-c}{2}\\right)^T\\)."
+    ],
+    "answer": "תשובה ב."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q4",
+   "number": "4",
+   "points": 5,
+   "type": "mc",
+   "text": "תהיינה \\(A=\\begin{pmatrix}2&i\\\\-i&1\\end{pmatrix},\\ B=\\begin{pmatrix}0&2i\\\\i&1\\end{pmatrix}\\). נסמן \\(c=\\det(A^2-B^2)\\). בחרו את הטענה הנכונה:",
+   "options": [
+    "\\(c=17\\)",
+    "\\(c=8\\)",
+    "\\(c=4\\)",
+    "\\(c=0\\)"
+   ],
+   "correct": 0,
+   "topic": "דטרמיננטות",
+   "sub": "חישוב דטרמיננטות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(A^2=\\begin{pmatrix}5&3i\\\\-3i&2\\end{pmatrix}\\), \\(B^2=\\begin{pmatrix}-2&2i\\\\i&-1\\end{pmatrix}\\).",
+     "\\(A^2-B^2=\\begin{pmatrix}7&i\\\\-4i&3\\end{pmatrix}\\).",
+     "\\(c=7\\cdot3-i\\cdot(-4i)=21-4=17\\)."
+    ],
+    "answer": "תשובה א."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q5",
+   "number": "5",
+   "points": 5,
+   "type": "mc",
+   "text": "נתון כי הפולינום האופייני של מטריצה לכסינה \\(A\\) הוא \\(p_A(x)=x^6-5x^3+x^2\\). בחרו את הטענה הנכונה:",
+   "options": [
+    "\\(\\mathrm{rank}(A)=3\\)",
+    "\\(\\mathrm{rank}(A)=2\\)",
+    "\\(\\mathrm{rank}(A)=5\\)",
+    "\\(\\mathrm{rank}(A)=4\\)"
+   ],
+   "correct": 3,
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "לכסון מטריצות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(p_A(x)=x^2(x^4-5x+1)\\), ו־0 אינו שורש של \\(x^4-5x+1\\); לכן הריבוי האלגברי של 0 הוא 2, ו־\\(A\\in M_{6\\times6}\\).",
+     "\\(A\\) לכסינה, ולכן גם הריבוי הגאומטרי של 0 הוא 2: \\(\\dim N(A)=2\\).",
+     "\\(\\mathrm{rank}(A)=6-2=4\\)."
+    ],
+    "answer": "תשובה ד."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q6",
+   "number": "6",
+   "points": 5,
+   "type": "mc",
+   "text": "תהי \\(A=\\begin{pmatrix}1&0&1&0\\\\-1&-1&1&1\\end{pmatrix}\\in M_{2\\times4}(\\mathbb{R})\\) ותהי \\(B\\in M_{4\\times4}(\\mathbb{R})\\) המקיימת \\[N(B)=\\mathrm{Span}\\left\\{\\begin{pmatrix}1\\\\0\\\\1\\\\0\\end{pmatrix},\\begin{pmatrix}0\\\\1\\\\0\\\\1\\end{pmatrix}\\right\\}.\\] בחרו את הטענה הנכונה:",
+   "options": [
+    "\\(N(A)+Row(B)=\\mathbb{R}^4\\)",
+    "\\(\\begin{pmatrix}0\\\\3\\\\0\\\\3\\end{pmatrix}\\in N(A)\\cap N(B)\\)",
+    "\\(N(A)+N(B)=\\mathbb{R}^4\\)",
+    "\\(\\begin{pmatrix}2\\\\0\\\\2\\\\0\\end{pmatrix}\\in Row(A)\\cap Row(B)\\)"
+   ],
+   "correct": 1,
+   "topic": "מרחבים וקטוריים",
+   "sub": "דרגה ומרחבי השורות, העמודות והאפס",
+   "solution": {
+    "official": false,
+    "steps": [
+     "ב׳: \\((0,3,0,3)=3(0,1,0,1)\\in N(B)\\), ו־\\(A(0,3,0,3)^T=(0,-3+3)^T=(0,0)^T\\), ולכן הווקטור ב־\\(N(A)\\cap N(B)\\). נכון.",
+     "\\(N(A)=\\mathrm{Span}\\{(-1,2,1,0),(0,1,0,1)\\}\\), \\(Row(B)=N(B)^\\perp=\\mathrm{Span}\\{(1,0,-1,0),(0,1,0,-1)\\}\\).",
+     "א׳ ו־ג׳: בשני המקרים הסכום ממימד 3 (יש וקטור משותף/תלות), ולכן אינו \\(\\mathbb{R}^4\\). ד׳: \\((2,0,2,0)\\cdot(1,0,1,0)=4\\ne0\\), ולכן \\((2,0,2,0)\\notin N(B)^\\perp=Row(B)\\)."
+    ],
+    "answer": "תשובה ב."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q7",
+   "number": "7",
+   "points": 5,
+   "type": "mc",
+   "text": "תהי \\(T:\\mathbb{R}^3\\to\\mathbb{R}^3\\) העתקה לינארית, המקיימת \\[T\\begin{pmatrix}3\\\\2\\\\1\\end{pmatrix}=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix},\\quad T\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}.\\] בחרו את הטענה שבהכרח הנכונה:",
+   "options": [
+    "\\(T\\begin{pmatrix}-5\\\\2\\\\9\\end{pmatrix}=\\begin{pmatrix}4\\\\-3\\\\4\\end{pmatrix}\\)",
+    "\\(T\\begin{pmatrix}-5\\\\2\\\\9\\end{pmatrix}=\\begin{pmatrix}2\\\\0\\\\-2\\end{pmatrix}\\)",
+    "\\(T\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}=\\begin{pmatrix}5\\\\2\\\\1\\end{pmatrix}\\)",
+    "\\(T\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}=\\begin{pmatrix}2\\\\0\\\\-2\\end{pmatrix}\\)"
+   ],
+   "correct": 0,
+   "topic": "העתקות לינאריות",
+   "sub": "הגדרה ובדיקת לינאריות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(T\\) נקבעת בוודאות רק על \\(\\mathrm{Span}\\{(3,2,1),(1,2,3)\\}\\). \\((1,0,0)\\) אינו בפרישה הזו, ולכן ג׳ ו־ד׳ אינן בהכרח נכונות.",
+     "\\((-5,2,9)=\\alpha(3,2,1)+\\beta(1,2,3)\\): \\(3\\alpha+\\beta=-5,\\ 2\\alpha+2\\beta=2\\), ומכאן \\(\\alpha=-3,\\ \\beta=4\\) (בדיקה: \\(-3+12=9\\)).",
+     "\\(T(-5,2,9)=-3(0,1,0)+4(1,0,1)=(4,-3,4)\\)."
+    ],
+    "answer": "תשובה א."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q8",
+   "number": "8",
+   "points": 5,
+   "type": "mc",
+   "text": "יהיו \\(a,b\\in\\mathbb{R}\\) ויהיו \\[v=\\begin{pmatrix}1\\\\1\\\\a\\end{pmatrix},\\quad w=\\begin{pmatrix}b\\\\-1\\\\1\\end{pmatrix}\\] במרחב הוקטורי \\(\\mathbb{R}^3\\) עם המכפלה הפנימית הסטנדרטית. נתון כי \\(v,w\\) מאונכים זה לזה ובנוסף \\(\\|v-w\\|=\\frac{3}{\\sqrt2}\\). בחרו את הטענה הנכונה:",
+   "options": [
+    "\\(a=\\frac12,b=\\frac32\\)",
+    "\\(a=-\\frac12,b=\\frac32\\)",
+    "\\(a=\\frac12,b=\\frac12\\)",
+    "\\(a=\\frac32,b=-\\frac12\\)"
+   ],
+   "correct": 2,
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "מכפלה פנימית, נורמה ואורתוגונליות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(\\langle v,w\\rangle=b-1+a=0\\), ולכן \\(a=1-b\\).",
+     "\\(\\|v-w\\|^2=(1-b)^2+4+(a-1)^2=\\frac92\\), כלומר \\((1-b)^2+b^2=\\frac12\\).",
+     "\\(2b^2-2b+\\frac12=0\\Rightarrow(b-\\frac12)^2=0\\), ולכן \\(b=\\frac12,\\ a=\\frac12\\)."
+    ],
+    "answer": "תשובה ג."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q9a",
+   "number": "9א",
+   "points": 8,
+   "type": "open",
+   "text": "נתונה המטריצה \\[A=\\begin{pmatrix}0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\\\1&0&0&0\\end{pmatrix}\\in M_{4\\times4}(\\mathbb{C}).\\]מצאו את הפולינום האופייני של \\(A\\), ואת כל הערכים העצמיים של \\(A\\).",
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "ערכים ווקטורים עצמיים ופולינום אופייני",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(\\det(xI-A)=\\det\\begin{pmatrix}x&-1&0&0\\\\0&x&-1&0\\\\0&0&x&-1\\\\-1&0&0&x\\end{pmatrix}\\).",
+     "פיתוח לפי העמודה הראשונה: האיבר \\((1,1)\\) תורם \\(x\\cdot\\det\\begin{pmatrix}x&-1&0\\\\0&x&-1\\\\0&0&x\\end{pmatrix}=x^4\\).",
+     "האיבר \\((4,1)\\) שווה \\(-1\\) ותורם \\((-1)\\cdot(-1)^{4+1}\\cdot\\det\\begin{pmatrix}-1&0&0\\\\x&-1&0\\\\0&x&-1\\end{pmatrix}=(-1)(-1)(-1)=-1\\). לכן \\(p_A(x)=x^4-1\\).",
+     "\\(x^4-1=(x-1)(x+1)(x-i)(x+i)\\), ולכן הערכים העצמיים: \\(1,-1,i,-i\\)."
+    ],
+    "answer": "\\(p_A(x)=x^4-1\\); ערכים עצמיים \\(1,-1,i,-i\\)."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q9b",
+   "number": "9ב",
+   "points": 8,
+   "type": "open",
+   "text": "נתונה המטריצה \\[A=\\begin{pmatrix}0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\\\1&0&0&0\\end{pmatrix}\\in M_{4\\times4}(\\mathbb{C}).\\]הראו כי \\(A\\) לכסינה מעל \\(\\mathbb{C}\\), אבל \\(A\\) אינה לכסינה מעל \\(\\mathbb{R}\\).",
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "לכסון מטריצות",
+   "notes": "הסעיף מתבסס על סעיף א׳.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "מעל \\(\\mathbb{C}\\): ל־\\(A\\) ארבעה ערכים עצמיים שונים \\(1,-1,i,-i\\), ומטריצה \\(4\\times4\\) עם 4 ערכים עצמיים שונים לכסינה.",
+     "מעל \\(\\mathbb{R}\\): אם \\(A=PDP^{-1}\\) עם \\(P,D\\) ממשיות, אז איברי האלכסון של \\(D\\) הם שורשי \\(p_A\\) והם ממשיים.",
+     "אבל ל־\\(p_A(x)=(x-1)(x+1)(x^2+1)\\) יש רק שני שורשים ממשיים, ולכן אין 4 וקטורים עצמיים ממשיים בת״ל — \\(A\\) אינה לכסינה מעל \\(\\mathbb{R}\\)."
+    ],
+    "answer": "4 ערכים עצמיים שונים מעל \\(\\mathbb{C}\\); מעל \\(\\mathbb{R}\\) הפולינום האופייני אינו מתפרק לגורמים לינאריים."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q9c",
+   "number": "9ג",
+   "points": 4,
+   "type": "open",
+   "text": "נתונה המטריצה \\[A=\\begin{pmatrix}0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\\\1&0&0&0\\end{pmatrix}\\in M_{4\\times4}(\\mathbb{C}).\\]מצאו מספר שלם \\(m\\gt2023\\) עבורו מתקיים \\(A^m=I_4\\).",
+   "topic": "ערכים עצמיים ולכסון",
+   "sub": "לכסון מטריצות",
+   "notes": "הסעיף מתבסס על הסעיפים הקודמים.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(A=PDP^{-1}\\) עם \\(D=\\mathrm{diag}(1,-1,i,-i)\\), ולכן \\(A^4=PD^4P^{-1}=PIP^{-1}=I\\). (לחלופין: \\(A\\) מזיזה את וקטורי הבסיס במעגל באורך 4.)",
+     "לכן \\(A^{4k}=I\\) לכל \\(k\\) שלם, ובפרט \\(m=2024=4\\cdot506\\)."
+    ],
+    "answer": "\\(m=2024\\) (כל כפולה של 4 הגדולה מ־2023)."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q10a",
+   "number": "10א",
+   "points": 6,
+   "type": "open",
+   "text": "יהי \\(B=(v_1,v_2,v_3)\\) הבסיס של \\(\\mathbb{R}^3\\) הנתון על ידי הוקטורים \\[v_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix},\\quad v_2=\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix},\\quad v_3=\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}.\\] תהיינה \\(T:\\mathbb{R}^2\\to\\mathbb{R}^3\\) ו־\\(S:\\mathbb{R}^3\\to\\mathbb{R}^2\\) העתקות לינאריות המקיימות \\[S(v_1)=S(v_2)=S(v_3)=\\begin{pmatrix}2\\\\1\\end{pmatrix}\\] וגם \\[T\\begin{pmatrix}a\\\\b\\end{pmatrix}=\\begin{pmatrix}2a+b\\\\a+b\\\\a+2b\\end{pmatrix}\\] לכל \\(a,b\\in\\mathbb{R}\\).<br>מצאו את המטריצה \\([T]_B^E\\) כאשר \\(E\\) הוא הבסיס הסטנדרטי של \\(\\mathbb{R}^2\\).",
+   "topic": "העתקות לינאריות",
+   "sub": "מטריצה מייצגת",
+   "solution": {
+    "official": false,
+    "steps": [
+     "העמודות הן \\([T(e_1)]_B\\) ו־\\([T(e_2)]_B\\), כאשר \\(T(e_1)=(2,1,1)\\), \\(T(e_2)=(1,1,2)\\).",
+     "\\(xv_1+yv_2+zv_3=(x+y,\\ y+z,\\ z)\\).",
+     "\\((2,1,1)\\): \\(z=1,\\ y=0,\\ x=2\\). \\((1,1,2)\\): \\(z=2,\\ y=-1,\\ x=2\\).",
+     "\\([T]_B^E=\\begin{pmatrix}2&2\\\\0&-1\\\\1&2\\end{pmatrix}\\)."
+    ],
+    "answer": "\\([T]_B^E=\\begin{pmatrix}2&2\\\\0&-1\\\\1&2\\end{pmatrix}\\)"
+   }
+  },
+  {
+   "id": "2023-s1-m2-q10b",
+   "number": "10ב",
+   "points": 6,
+   "type": "open",
+   "text": "יהי \\(B=(v_1,v_2,v_3)\\) הבסיס של \\(\\mathbb{R}^3\\) הנתון על ידי הוקטורים \\[v_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix},\\quad v_2=\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix},\\quad v_3=\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}.\\] תהיינה \\(T:\\mathbb{R}^2\\to\\mathbb{R}^3\\) ו־\\(S:\\mathbb{R}^3\\to\\mathbb{R}^2\\) העתקות לינאריות המקיימות \\[S(v_1)=S(v_2)=S(v_3)=\\begin{pmatrix}2\\\\1\\end{pmatrix}\\] וגם \\[T\\begin{pmatrix}a\\\\b\\end{pmatrix}=\\begin{pmatrix}2a+b\\\\a+b\\\\a+2b\\end{pmatrix}\\] לכל \\(a,b\\in\\mathbb{R}\\).<br>מצאו נוסחא מפורשת עבור \\(S\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}\\) לכל \\(x,y,z\\in\\mathbb{R}\\).",
+   "topic": "העתקות לינאריות",
+   "sub": "מטריצה מייצגת",
+   "solution": {
+    "official": false,
+    "steps": [
+     "נכתוב \\((x,y,z)=\\alpha v_1+\\beta v_2+\\gamma v_3=(\\alpha+\\beta,\\beta+\\gamma,\\gamma)\\): \\(\\gamma=z,\\ \\beta=y-z,\\ \\alpha=x-y+z\\).",
+     "\\(S(x,y,z)=(\\alpha+\\beta+\\gamma)\\begin{pmatrix}2\\\\1\\end{pmatrix}=(x+z)\\begin{pmatrix}2\\\\1\\end{pmatrix}\\).",
+     "\\(S(x,y,z)=(2x+2z,\\ x+z)\\)."
+    ],
+    "answer": "\\(S\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=\\begin{pmatrix}2x+2z\\\\x+z\\end{pmatrix}\\)"
+   }
+  },
+  {
+   "id": "2023-s1-m2-q10c",
+   "number": "10ג",
+   "points": 8,
+   "type": "open",
+   "text": "יהי \\(B=(v_1,v_2,v_3)\\) הבסיס של \\(\\mathbb{R}^3\\) הנתון על ידי הוקטורים \\[v_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix},\\quad v_2=\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix},\\quad v_3=\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}.\\] תהיינה \\(T:\\mathbb{R}^2\\to\\mathbb{R}^3\\) ו־\\(S:\\mathbb{R}^3\\to\\mathbb{R}^2\\) העתקות לינאריות המקיימות \\[S(v_1)=S(v_2)=S(v_3)=\\begin{pmatrix}2\\\\1\\end{pmatrix}\\] וגם \\[T\\begin{pmatrix}a\\\\b\\end{pmatrix}=\\begin{pmatrix}2a+b\\\\a+b\\\\a+2b\\end{pmatrix}\\] לכל \\(a,b\\in\\mathbb{R}\\).<br>מצאו בסיס של \\(\\ker(S)\\cap\\mathrm{Im}(T)\\).",
+   "topic": "העתקות לינאריות",
+   "sub": "גרעין ותמונה ומשפט המימד",
+   "notes": "הסעיף מתבסס על סעיף ב׳.",
+   "solution": {
+    "official": false,
+    "steps": [
+     "מסעיף ב׳: \\(\\ker S=\\{(x,y,z):\\ x+z=0\\}\\).",
+     "\\(\\mathrm{Im}\\,T=\\mathrm{Span}\\{(2,1,1),(1,1,2)\\}\\); וקטור כללי בתמונה: \\(\\alpha(2,1,1)+\\beta(1,1,2)=(2\\alpha+\\beta,\\alpha+\\beta,\\alpha+2\\beta)\\).",
+     "תנאי הגרעין: \\((2\\alpha+\\beta)+(\\alpha+2\\beta)=3(\\alpha+\\beta)=0\\), כלומר \\(\\beta=-\\alpha\\), והווקטור הוא \\(\\alpha(1,0,-1)\\).",
+     "בסיס: \\(\\{(1,0,-1)\\}\\)."
+    ],
+    "answer": "\\(\\{(1,0,-1)\\}\\)"
+   }
+  },
+  {
+   "id": "2023-s1-m2-q11a",
+   "number": "11א",
+   "points": 10,
+   "type": "open",
+   "text": "יהי \\(\\mathbb{R}^4\\) מרחב מכפלה פנימית עם המכפלה הפנימית הסטנדרטית. יהי \\[W=\\mathrm{Span}\\left\\{\\begin{pmatrix}1\\\\0\\\\1\\\\-1\\end{pmatrix},\\begin{pmatrix}2\\\\1\\\\4\\\\0\\end{pmatrix},\\begin{pmatrix}2\\\\3\\\\2\\\\1\\end{pmatrix}\\right\\}.\\]מצאו בסיס אורתונורמלי ל־\\(W\\).",
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "הטלה אורתוגונלית ותהליך גרם–שמידט",
+   "solution": {
+    "official": false,
+    "steps": [
+     "גרם־שמידט: \\(u_1=(1,0,1,-1)\\), \\(\\|u_1\\|^2=3\\).",
+     "\\(u_2=(2,1,4,0)-\\frac{6}{3}u_1=(0,1,2,2)\\), \\(\\|u_2\\|^2=9\\).",
+     "\\(u_3=(2,3,2,1)-\\frac{3}{3}u_1-\\frac{9}{9}u_2=(1,2,-1,0)\\), \\(\\|u_3\\|^2=6\\) (בפרט שלושת הווקטורים בת״ל).",
+     "נרמול: \\(\\left\\{\\frac{1}{\\sqrt3}(1,0,1,-1),\\ \\frac13(0,1,2,2),\\ \\frac{1}{\\sqrt6}(1,2,-1,0)\\right\\}\\)."
+    ],
+    "answer": "\\(\\left\\{\\frac{1}{\\sqrt3}(1,0,1,-1),\\frac13(0,1,2,2),\\frac{1}{\\sqrt6}(1,2,-1,0)\\right\\}\\)"
+   }
+  },
+  {
+   "id": "2023-s1-m2-q11b",
+   "number": "11ב",
+   "points": 5,
+   "type": "open",
+   "text": "יהי \\(\\mathbb{R}^4\\) מרחב מכפלה פנימית עם המכפלה הפנימית הסטנדרטית. יהי \\[W=\\mathrm{Span}\\left\\{\\begin{pmatrix}1\\\\0\\\\1\\\\-1\\end{pmatrix},\\begin{pmatrix}2\\\\1\\\\4\\\\0\\end{pmatrix},\\begin{pmatrix}2\\\\3\\\\2\\\\1\\end{pmatrix}\\right\\}.\\]מצאו בסיס אורתונורמלי ל־\\(W^\\perp\\).",
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "מכפלה פנימית, נורמה ואורתוגונליות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(\\dim W=3\\), ולכן \\(\\dim W^\\perp=1\\).",
+     "פותרים \\(x_1+x_3-x_4=0,\\ 2x_1+x_2+4x_3=0,\\ 2x_1+3x_2+2x_3+x_4=0\\) ומקבלים \\(W^\\perp=\\mathrm{Span}\\{(3,-2,-1,2)\\}\\).",
+     "\\(\\|(3,-2,-1,2)\\|=\\sqrt{18}=3\\sqrt2\\), ולכן הבסיס: \\(\\left\\{\\frac{1}{3\\sqrt2}(3,-2,-1,2)\\right\\}\\)."
+    ],
+    "answer": "\\(\\left\\{\\frac{1}{3\\sqrt2}(3,-2,-1,2)\\right\\}\\)"
+   }
+  },
+  {
+   "id": "2023-s1-m2-q11c",
+   "number": "11ג",
+   "points": 5,
+   "type": "open",
+   "text": "יהי \\(\\mathbb{R}^4\\) מרחב מכפלה פנימית עם המכפלה הפנימית הסטנדרטית. יהי \\[W=\\mathrm{Span}\\left\\{\\begin{pmatrix}1\\\\0\\\\1\\\\-1\\end{pmatrix},\\begin{pmatrix}2\\\\1\\\\4\\\\0\\end{pmatrix},\\begin{pmatrix}2\\\\3\\\\2\\\\1\\end{pmatrix}\\right\\}.\\]מצאו שני וקטורים <b>שונים</b> \\(v_1,v_2\\in\\mathbb{R}^4\\) המקיימים \\[P_W(v_1)=P_W(v_2)=\\begin{pmatrix}1\\\\0\\\\1\\\\-1\\end{pmatrix},\\] כאשר \\(P_W\\) זו ההטלה האורתוגונלית על \\(W\\).",
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "הטלה אורתוגונלית ותהליך גרם–שמידט",
+   "solution": {
+    "official": false,
+    "steps": [
+     "\\(w_0=(1,0,1,-1)\\in W\\), ולכן \\(P_W(w_0)=w_0\\).",
+     "לכל \\(u\\in W^\\perp\\): \\(P_W(w_0+u)=w_0+0=w_0\\).",
+     "מסעיף ב׳ \\(u=(3,-2,-1,2)\\in W^\\perp\\), ולכן \\(v_1=(1,0,1,-1)\\), \\(v_2=(4,-2,0,1)\\)."
+    ],
+    "answer": "\\(v_1=(1,0,1,-1),\\ v_2=(4,-2,0,1)\\) (למשל)."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q12a",
+   "number": "12א",
+   "points": 10,
+   "type": "open",
+   "text": "(אין קשר בין הסעיפים.)<br>יהי \\(V\\) מרחב וקטורי ויהיו \\(v_1,\\dots,v_k,u_1,\\dots,u_m\\in V\\) כאשר \\(k,m\\ge1\\) מספרים שלמים כלשהם. נתון כי \\(\\{v_1,\\dots,v_k,u_1,\\dots,u_m\\}\\) קבוצה בלתי תלויה לינארית. הראו כי מתקיים \\[\\mathrm{Span}\\{v_1,\\dots,v_k\\}\\cap\\mathrm{Span}\\{u_1,\\dots,u_m\\}=\\{0\\}.\\]",
+   "topic": "מרחבים וקטוריים",
+   "sub": "תלות ואי־תלות לינארית",
+   "solution": {
+    "official": false,
+    "steps": [
+     "יהי \\(x\\) בחיתוך: \\(x=\\sum_{i=1}^k\\alpha_iv_i=\\sum_{j=1}^m\\beta_ju_j\\).",
+     "אז \\(\\sum\\alpha_iv_i-\\sum\\beta_ju_j=0\\), ומאי־התלות של כל הקבוצה כל המקדמים \\(\\alpha_i,\\beta_j\\) הם 0.",
+     "לכן \\(x=0\\), והחיתוך הוא \\(\\{0\\}\\)."
+    ],
+    "answer": "כל וקטור בחיתוך הוא 0."
+   }
+  },
+  {
+   "id": "2023-s1-m2-q12b",
+   "number": "12ב",
+   "points": 10,
+   "type": "open",
+   "text": "(אין קשר בין הסעיפים.)<br>יהי \\(V\\) מרחב מכפלה פנימית. תהי \\(T:V\\to V\\) העתקה לינארית המקיימת \\[(T(u),T(v))=(u,v)\\] לכל \\(u,v\\in V\\). הראו כי \\(T\\) היא חד חד ערכית.",
+   "topic": "מרחבי מכפלה פנימית",
+   "sub": "מכפלה פנימית, נורמה ואורתוגונליות",
+   "solution": {
+    "official": false,
+    "steps": [
+     "מספיק להראות \\(\\ker T=\\{0\\}\\).",
+     "אם \\(T(v)=0\\), אז \\((v,v)=(T(v),T(v))=(0,0)=0\\).",
+     "מחיוביות המכפלה הפנימית \\(v=0\\). לכן \\(T\\) חד חד ערכית."
+    ],
+    "answer": "\\(\\ker T=\\{0\\}\\), ולכן \\(T\\) חח״ע."
+   }
+  }
+ ]
+}
